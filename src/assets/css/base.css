@@ -84,3 +84,5 @@ html.no-js .reveal{opacity:1;transform:none}
 .marquee{overflow:hidden;white-space:nowrap} .marquee span{display:inline-block;padding-right:3em;animation:mq 28s linear infinite} @keyframes mq{to{transform:translateX(-50%)}}
 .num{font-variant-numeric:tabular-nums}
 .ai-note{font-size:12px;color:var(--muted)}
+
+.form .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}

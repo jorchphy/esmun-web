@@ -93,7 +93,7 @@
   if (form) {
     form.addEventListener('submit', function (ev) {
       ev.preventDefault(); var ep = form.getAttribute('data-endpoint'); var msg = form.querySelector('.form-msg');
-      if (!ep || ep.indexOf('TU_ID') !== -1) { msg.textContent = 'Formulario de demostración: configura el endpoint (Formspree, Getform o Netlify Forms) en data-endpoint.'; return; }
+      var ak = form.querySelector('input[name=access_key]'); if (!ep || ep.indexOf('TU_ID') !== -1 || (ak && ak.value.indexOf('PEGAR') === 0)) { msg.textContent = 'Formulario de demostración: configura el endpoint (Formspree, Getform o Netlify Forms) en data-endpoint.'; return; }
       var data = new FormData(form); msg.textContent = 'Enviando…';
       fetch(ep, { method: 'POST', body: data, headers: { Accept: 'application/json' } }).then(function (r) { msg.textContent = r.ok ? 'Gracias. Te respondemos por correo en menos de 48 horas.' : 'No se pudo enviar. Escríbenos a esmunze@outlook.com.'; if (r.ok) form.reset(); }).catch(function () { msg.textContent = 'Sin conexión. Escríbenos a esmunze@outlook.com.'; });
     });

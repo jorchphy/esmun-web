@@ -20,7 +20,7 @@ EXTRA_CSS = """
 def rootify(html_):
     """Rutas de carpeta de propuesta (../assets) a raíz (assets)."""
     html_ = html_.replace('"../assets/', '"assets/').replace("'../assets/", "'assets/").replace('(../assets/', '(assets/')
-    html_ = html_.replace('href="../noticias/"', 'href="noticias/"').replace('href="../noticias/', 'href="noticias/')
+    html_ = html_.replace('href="../noticias/"', 'href="noticias/"').replace('href="../noticias/', 'href="noticias/').replace('href="../privacidad/"', 'href="privacidad/"')
     html_ = html_.replace('content="../assets/', 'content="assets/')
     return html_
 

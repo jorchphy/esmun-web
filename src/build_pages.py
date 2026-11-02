@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Subpáginas del sitio final de ESMUN: quienes/, comites/, munmx/, contacto/ (+ portada con la navegación nueva).
 Todas comparten cabecera, pie, base.css, el CSS de la portada (P6) y el globo. Salida en /home/claude/web/final/."""
-import sys, pathlib, json, html
+import sys, pathlib, json, html, re
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import build_sites as B
 import build_p6 as P6
@@ -22,7 +22,7 @@ def header(prefix, active):
 <nav class="site-nav" aria-label="Principal">{links}<a class="btn cta" href="{prefix}contacto/">Únete</a></nav></div></header>"""
 
 def footer(prefix):
-    return B.footer('dark').replace('href="../noticias/"', f'href="{prefix}noticias/"').replace('href="#quienes"', f'href="{prefix}quienes/"').replace('href="#munmx"', f'href="{prefix}munmx/"')
+    return B.footer('dark').replace('href="../privacidad/"', f'href="{prefix}privacidad/"').replace('href="../noticias/"', f'href="{prefix}noticias/"').replace('href="#quienes"', f'href="{prefix}quienes/"').replace('href="#munmx"', f'href="{prefix}munmx/"')
 
 def scrollcue(ids):
     return '<nav class="scrollcue" aria-label="Secciones">' + ''.join(f'<a href="#{i}" aria-label="{t}"></a>' for i, t in ids) + '</nav>'
@@ -58,6 +58,7 @@ PAGES_CSS = """
 .panel{min-height:100svh;color:#fff} .panel .sig{font-family:var(--display);text-transform:uppercase;font-size:clamp(120px,22vw,360px);line-height:.8;letter-spacing:-.01em;color:#fff;opacity:.96} .panel .nm{font-size:clamp(26px,2.6vw,40px);font-weight:600;line-height:1.15;margin:10px 0 6px} .panel .lv{font-size:12px;letter-spacing:.18em;text-transform:uppercase;opacity:.85} .panel .sede{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.9} .panel .sede i{width:10px;height:10px;border-radius:50%;background:#FFD98A;box-shadow:0 0 10px #FFD98A;display:inline-block}
 .panel .lead{color:inherit;opacity:.92;max-width:52ch;margin-top:18px} .panel .btn{border-color:currentColor;color:inherit;background:transparent} .panel.light{color:var(--tinta)} .panel.light .sig{color:var(--tinta)} .panel.light .sede i{background:var(--tinta);box-shadow:none}
 .panel .shield::before{background:radial-gradient(ellipse at center,var(--bgc) 42%,transparent 100%);opacity:.9}
+.mesa{margin-top:22px} .mesa ul{list-style:none;margin:8px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px 18px} .mesa li{display:grid;line-height:1.3} .mesa .nm2{font-weight:600;font-size:15px} .mesa .cg{font-size:12px;opacity:.8} .mesa ul.dl{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
 .com-index{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px} .com-index a{display:inline-grid;grid-auto-flow:column;align-items:center;gap:10px;padding:8px 14px 8px 10px;border:1px solid rgba(255,255,255,.3);border-radius:999px;color:#fff;text-decoration:none;font-size:13px;background:rgba(28,32,48,.4)} .com-index a b{font-family:var(--display);font-size:24px;line-height:1;color:var(--acc);filter:brightness(1.7)}
 /* preguntas */
 .faq{display:grid;gap:0;margin-top:28px;max-width:720px} .faq details{border-top:1px solid var(--line);padding:14px 0} .faq summary{cursor:pointer;font-weight:600;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:16px} .faq summary::after{content:'+';font-family:var(--display);font-size:28px;line-height:1;color:var(--accent)} .faq details[open] summary::after{content:'–'} .faq p{margin:10px 0 0;color:var(--muted);max-width:60ch}
@@ -108,6 +109,17 @@ def staff_cards():
         out+=f'<div class="staff reveal"><div class="av">{av}</div><h3>{s["nombre"]}</h3><b>{s["rol"]}</b><p>{s["desc"]}</p></div>'
     return out
 
+def mesa_html(d):
+    """Mesa directiva (y opcionalmente delegaciones) de un comité, si están en comites.json."""
+    out = ''
+    if d.get('mesa'):
+        out += '<div class="mesa reveal d3"><b class="lv">Mesa directiva</b><ul>' + ''.join(f'<li><span class="nm2">{m["nombre"]}</span><span class="cg">{m.get("cargo","")}</span></li>' for m in d['mesa']) + '</ul></div>'
+    if d.get('delegaciones'):
+        out += '<div class="mesa reveal d3"><b class="lv">Delegaciones</b><ul class="dl">' + ''.join(f'<li><span class="nm2">{x["pais"]}</span><span class="cg">{x.get("escuela","")}</span></li>' for x in d['delegaciones']) + '</ul></div>'
+    if d.get('tema'):
+        out += f'<p class="lead reveal d3" style="margin-top:14px"><b>Tema 2027:</b> {d["tema"]}</p>'
+    return out
+
 def comites_page(prefix='../'):
     secs = [('intro', 'Comités')] + [(c[0].lower(), c[0]) for c in C['comites']]
     body = header(prefix, 'comites/') + globe_div(prefix) + scrollcue(secs) + '<main id="main">'
@@ -122,7 +134,7 @@ def comites_page(prefix='../'):
         body += f"""<section class="panel {'tl' if left else 'tr'}{' light' if light else ''}" id="{sig.lower()}" data-section data-theme="{theme}" data-bg="{d['bg']}" style="background:{d['bg']};--bgc:{d['bg']};--acc:{acc}" data-globe="hero" data-kf="{kf(x=(1.1 if left else -1.1), y=-.05, s=.95, lon=d['lon'], dark=(not light), glow=.5, bg=d['bg'], dots=d['dots'], focus=d['focus'])}"><div class="wrap"><div class="content shield">
 <div class="sig reveal">{sig}</div><div class="nm reveal d1">{nm}</div><div class="lv reveal d1">{lv}</div>
 <p class="sede reveal d2"><i></i>Sede real: {d['sede']}</p>
-<p class="lead reveal d2">{d['txt'][0]}</p><p class="lead reveal d3" style="margin-top:12px">{d['txt'][1]}</p>
+<p class="lead reveal d2">{d['txt'][0]}</p><p class="lead reveal d3" style="margin-top:12px">{d['txt'][1]}</p>{mesa_html(d)}
 </div>{'<div aria-hidden="true"></div>' if left else ''}</div></section>"""
     body += f"""<section class="tl" id="unete" data-section data-theme="paper" data-globe="contacto" data-kf="{kf(x=1.6, y=-.1, s=.82, lon=-99, dark=False, glow=0)}"><div class="wrap"><div class="content"><p class="eyebrow reveal">Y después</p><h2 class="display reveal d1" style="font-size:clamp(56px,8vw,130px)">Elige tu comité</h2><p class="lead reveal d2" style="margin-top:18px">Si nunca has participado, empieza por la Asamblea General o UNICEF. Si ya tienes un par de modelos, prueba la OEA o el OIEA. El Consejo de Seguridad y la OTAN son para quien ya sabe lo que es una sesión sin receso.</p><p class="reveal d3" style="margin-top:24px;display:flex;gap:14px;flex-wrap:wrap"><a class="btn" href="{prefix}contacto/">Únete al equipo</a><a class="btn ghost" href="{prefix}munmx/">MUNMX 2027</a></p></div><div aria-hidden="true"></div></div></section></main>"""
     return head('Comités · ESMUN PrepaTec Esmeralda', 'Los comités de los modelos de ESMUN: Consejo de Seguridad, Asamblea General, OIEA, UNICEF, OEA y OTAN. Sede, nivel e idioma de cada uno.', prefix, 'comites/') + body + footer(prefix) + scripts(prefix)
@@ -163,7 +175,7 @@ def munmx_page(prefix='../'):
 def registro_page(prefix='../'):
     """Pre-registro de delegaciones (formulario provisional hasta que abra el registro oficial)."""
     secs = [('intro', 'Registro'), ('como', 'Cómo funciona')]
-    form = f"""<form class="form" data-endpoint="{C.get("formspree_registro","https://formspree.io/f/TU_ID_REGISTRO")}" method="post">
+    form = f"""<form class="form" {B.form_attrs("registro")[0]} method="post">{B.form_attrs("registro")[1]}
 <input type="hidden" name="formulario" value="pre-registro MUNMX 2027">
 <div class="row"><label>Escuela<input name="escuela" type="text" autocomplete="organization" required></label><label>Ciudad<input name="ciudad" type="text" autocomplete="address-level2" required></label></div>
 <div class="row"><label>Nombre del advisor o responsable<input name="responsable" type="text" autocomplete="name" required></label><label>Correo<input name="correo" type="email" autocomplete="email" required></label></div>
@@ -173,7 +185,7 @@ def registro_page(prefix='../'):
 <label>Comentarios<textarea name="mensaje" rows="3" placeholder="Comités que les interesan, experiencia previa, necesidades especiales"></textarea></label>
 <label style="display:flex;gap:10px;align-items:center;text-transform:none;letter-spacing:0;font-weight:500;font-size:14px"><input type="checkbox" name="aviso" checked style="width:18px;height:18px"> Avísenme por correo el día que abra el registro oficial</label>
 <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><button class="btn" type="submit">Enviar pre-registro</button><span class="form-msg" role="status" aria-live="polite" style="font-size:13px;color:var(--muted)"></span></div>
-<small>El pre-registro no compromete lugares ni tiene costo. Usamos los datos solo para organizar la conferencia y avisarles del registro.</small></form>"""
+<small>El pre-registro no compromete lugares ni tiene costo. Usamos los datos solo para organizar la conferencia y avisarles del registro (<a href="{prefix}privacidad/">aviso de privacidad</a>).</small></form>"""
     body = header(prefix, '') + globe_div(prefix) + scrollcue(secs) + '<main id="main">'
     body += f"""<section class="tr" id="intro" data-section data-theme="paper" data-globe="contacto"><div class="wrap"><div class="content"><p class="eyebrow reveal">MUNMX Esmeralda 2027 · 11, 12 y 13 de marzo</p><h1 class="display reveal d1" style="font-size:clamp(56px,8vw,130px);line-height:.88">Pre-registro<br>de delegaciones</h1>
 <p class="lead reveal d2" style="margin-top:18px">El registro oficial abre con la convocatoria. Mientras tanto, las escuelas interesadas pueden dejar aquí sus datos: con eso calculamos cupos por comité y les avisamos primero.</p>
@@ -183,12 +195,27 @@ def registro_page(prefix='../'):
 <p class="reveal d3" style="margin-top:28px;display:flex;gap:14px;flex-wrap:wrap"><a class="btn" href="{prefix}comites/" style="background:#fff;color:var(--azul);border-color:#fff">Ver los comités</a><a class="btn ghost" href="{prefix}munmx/" style="color:#fff">Sobre MUNMX 2027</a></p></div><div aria-hidden="true"></div></div></section></main>"""
     return head('Registro · MUNMX Esmeralda 2027', 'Pre-registro de delegaciones para MUNMX Esmeralda 2027 (11, 12 y 13 de marzo). El registro oficial abre con la convocatoria.', prefix, 'registro/') + body + footer(prefix) + scripts(prefix)
 
+def privacidad_page(prefix='../'):
+    org = 'ESMUN, grupo estudiantil de la PrepaTec Esmeralda (Tecnológico de Monterrey)'
+    body = header(prefix, '') + globe_div(prefix) + '<main id="main">'
+    body += f"""<section class="tr" id="aviso" data-section data-theme="paper" data-globe="quienes" style="min-height:auto"><div class="wrap"><div class="content"><p class="eyebrow reveal">Aviso de privacidad</p><h1 class="display reveal d1" style="font-size:clamp(56px,8vw,130px);line-height:.88">Tus datos</h1>
+<div class="reveal d2" style="margin-top:18px;font-size:16px;line-height:1.7;max-width:68ch">
+<p><b>Responsable.</b> {org}, con domicilio en {C['ciudad']}. Contacto: <a href="mailto:{C['mail']}">{C['mail']}</a>.</p>
+<p><b>Qué datos recabamos.</b> Los que escribes en los formularios de este sitio: nombre, correo, escuela, ciudad, teléfono (opcional), número estimado de delegados y tus comentarios.</p>
+<p><b>Para qué.</b> Responder a tu mensaje, organizar la conferencia MUNMX Esmeralda (cupos, comités, comunicación con delegaciones) y, si lo marcaste, avisarte de la apertura del registro. No usamos los datos para publicidad ni los vendemos.</p>
+<p><b>Con quién se comparten.</b> Con el equipo organizador de ESMUN y su advisor. Los formularios se procesan con un servicio externo de recepción de formularios; si el sitio tiene analítica activada, se recogen estadísticas de uso anónimas.</p>
+<p><b>Menores de edad.</b> Si tienes menos de 18 años, envía tus datos con autorización de tu madre, padre o tutor.</p>
+<p><b>Tus derechos (ARCO).</b> Puedes pedir acceso, rectificación, cancelación u oposición escribiendo a <a href="mailto:{C['mail']}">{C['mail']}</a>. Respondemos en un máximo de 20 días hábiles.</p>
+<p><b>Cambios.</b> Este aviso puede actualizarse; la versión vigente es la publicada en esta página. Última actualización: noviembre de 2026.</p>
+<p class="ai-note" style="margin-top:28px">Borrador para revisión del advisor y de la prepa antes de publicar.</p></div></div></div></section></main>"""
+    return head('Aviso de privacidad · ESMUN', 'Aviso de privacidad del sitio de ESMUN, grupo estudiantil de la PrepaTec Esmeralda.', prefix, 'privacidad/', extra='<meta name="robots" content="noindex">') + body + footer(prefix) + scripts(prefix)
+
 def contacto_page(prefix='../'):
     secs = [('intro', 'Contacto'), ('faq', 'Preguntas')]
     body = header(prefix, 'contacto/') + globe_div(prefix) + scrollcue(secs) + '<main id="main">'
     body += f"""<section class="tr" id="intro" data-section data-theme="paper" data-globe="contacto"><div class="wrap"><div class="content"><p class="eyebrow reveal">Contacto</p><h1 class="display reveal d1" style="font-size:clamp(64px,9vw,150px);line-height:.85">Hablemos</h1><p class="lead reveal d2" style="margin-top:18px">Escríbenos si quieres entrar al equipo, registrar a tu delegación o proponer una alianza.</p>
 <p class="reveal d2" style="line-height:1.9;margin-top:18px"><a href="mailto:{C['mail']}">{C['mail']}</a><br><a href="{C['ig_url']}" rel="noopener" target="_blank">Instagram {C['ig']}</a><br>PrepaTec Esmeralda · {C['ciudad']}</p>
-<div class="reveal d3" style="margin-top:28px">{B.contact_form()}</div></div></div></section>
+<div class="reveal d3" style="margin-top:28px">{B.contact_form(PRIV=prefix+'privacidad/')}</div></div></div></section>
 <section class="tl" id="faq" data-section data-theme="dark" data-globe="hero" data-kf="{kf(x=1.3, y=-.1, s=1.0, lon=-99, dark=True, glow=.4)}"><div class="wrap"><div class="content"><p class="eyebrow reveal" style="color:#B9C6EE">Preguntas frecuentes</p><h2 class="display reveal d1" style="font-size:clamp(56px,8vw,130px)">Antes de escribir</h2>
 <div class="faq reveal d2" style="--line:rgba(255,255,255,.2);--muted:#C9D2F0;--accent:#FFD98A"><details open><summary>¿Necesito experiencia para entrar a ESMUN?</summary><p>No. Empiezas con sesiones de preparación y simulacros, y debutas en la conferencia de la prepa.</p></details><details><summary>¿Cuándo son las sesiones?</summary><p>Se acuerdan con el equipo cada semestre; te lo decimos al responder.</p></details><details><summary>¿Puede participar alguien de otra escuela?</summary><p>En MUNMX Esmeralda sí, como delegación con su advisor. ESMUN como grupo es de la PrepaTec Esmeralda.</p></details><details><summary>¿Cómo pueden apoyar las empresas o exalumnos?</summary><p>Con patrocinio de la conferencia, materiales o charlas. Escríbenos y te contamos qué hace falta este año.</p></details></div></div><div aria-hidden="true"></div></div></section></main>"""
     return head('Contacto · ESMUN PrepaTec Esmeralda', 'Escríbenos para unirte a ESMUN, registrar a tu delegación en MUNMX Esmeralda o proponer una alianza.', prefix, 'contacto/') + body + footer(prefix) + scripts(prefix)
@@ -215,7 +242,7 @@ def home():
 def build():
     (OUT / 'style.css').write_text(P6.CSS + PAGES_CSS, encoding='utf-8')
     (OUT / 'index.html').write_text(home(), encoding='utf-8')
-    for folder, fn in [('quienes', quienes_page), ('comites', comites_page), ('munmx', munmx_page), ('contacto', contacto_page), ('registro', registro_page)]:
+    for folder, fn in [('quienes', quienes_page), ('comites', comites_page), ('munmx', munmx_page), ('contacto', contacto_page), ('registro', registro_page), ('privacidad', privacidad_page)]:
         d = OUT / folder; d.mkdir(exist_ok=True); (d / 'index.html').write_text(fn('../'), encoding='utf-8')
     # pie y cabecera del blog con la navegación nueva
     for f in (OUT / 'noticias').glob('*.html'):
@@ -228,6 +255,8 @@ def build():
     pages = ['/', '/quienes/', '/comites/', '/munmx/', '/noticias/'] + ['/noticias/' + n[5] + '.html' for n in C['noticias']] + ['/contacto/', '/registro/']
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{DOMAIN}{p}</loc><changefreq>{"weekly" if p in ("/", "/noticias/") else "monthly"}</changefreq></url>\n' for p in pages) + '</urlset>\n'
     (OUT / 'sitemap.xml').write_text(sm, encoding='utf-8')
+    host = re.sub(r'^https?://', '', DOMAIN).strip('/')
+    if not host.endswith('github.io'): (OUT / 'CNAME').write_text(host + '\n', encoding='utf-8')
     print('pages ok')
 
 if __name__ == '__main__':

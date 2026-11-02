@@ -29,6 +29,24 @@ C=dict(
 
 C, _POSTS_MD = load_content(SRC/'content', C)
 
+# ---------------------------------------------------------------- formularios y analítica (configurados en content/site.json)
+def form_attrs(nombre):
+    """Atributos y campos ocultos del formulario según el proveedor."""
+    f=C.get('formularios',{}) or {}
+    if f.get('proveedor')=='web3forms':
+        return 'data-endpoint="https://api.web3forms.com/submit"', f'<input type="hidden" name="access_key" value="{f.get("access_key","")}"><input type="hidden" name="subject" value="ESMUN web · {nombre}"><input type="hidden" name="from_name" value="Sitio ESMUN"><input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">'
+    ep=f.get(nombre) or f.get('contacto') or 'https://formspree.io/f/TU_ID'
+    return f'data-endpoint="{ep}"', '<input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">'
+
+def analytics():
+    a=C.get('analitica',{}) or {}
+    out=''
+    if a.get('ga4'):
+        out+=f'<script async src="https://www.googletagmanager.com/gtag/js?id={a["ga4"]}"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag("js",new Date());gtag("config","{a["ga4"]}",{{anonymize_ip:true}});</script>'
+    if a.get('cloudflare'):
+        out+=f'<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon=\'{{"token": "{a["cloudflare"]}"}}\'></script>'
+    return out
+
 # ---------------------------------------------------------------- piezas comunes
 def head(title, desc, css, path_prefix='..', extra=''):
     return f"""<!doctype html><html lang="es" class="no-js"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -37,7 +55,7 @@ def head(title, desc, css, path_prefix='..', extra=''):
 <link rel="icon" href="{path_prefix}/assets/logo/ESMUN_favicon_32.png"><link rel="apple-touch-icon" href="{path_prefix}/assets/logo/ESMUN_favicon_180.png">
 <link rel="stylesheet" href="{path_prefix}/assets/css/base.css"><link rel="stylesheet" href="{css}">
 <script type="application/ld+json">{json.dumps({"@context":"https://schema.org","@type":"Organization","name":"ESMUN · Modelo de Naciones Unidas PrepaTec Esmeralda","alternateName":"ESMUN","url":C.get("dominio","https://esmun.github.io")+"/","logo":C.get("dominio","https://esmun.github.io")+"/assets/logo/ESMUN_favicon_180.png","sameAs":[C['ig_url']],"email":C['mail'],"parentOrganization":{"@type":"EducationalOrganization","name":"PrepaTec Esmeralda"},"address":{"@type":"PostalAddress","addressLocality":"Atizapán de Zaragoza","addressRegion":"Estado de México","addressCountry":"MX"}},ensure_ascii=False)}</script>
-{extra}<script>document.documentElement.classList.remove('no-js')</script></head><body>"""
+{extra}{analytics()}<script>document.documentElement.classList.remove('no-js')</script></head><body>"""
 
 NAV=[('#inicio','Inicio'),('#quienes','Quiénes somos'),('#munmx','MUNMX 2027'),('#noticias','Noticias'),('#contacto','Contacto')]
 def header(logo_kind='horizontal', cta=('#munmx','Próximamente')):
@@ -51,17 +69,17 @@ def footer(theme='dark'):
 <div class="cols"><div style="max-width:300px">{esmun_logo_svg(kind='principal',mode='auto')}</div><p style="margin:14px 0 0;max-width:40ch">Grupo estudiantil de Modelo de Naciones Unidas de la PrepaTec Esmeralda. Organizador de MUNMX Esmeralda.</p></div>
 <div class="cols"><b>Contacto</b><a href="mailto:{C['mail']}">{C['mail']}</a><br><a href="{C['ig_url']}" rel="noopener" target="_blank">Instagram {C['ig']}</a><br>{C['ciudad']}</div>
 <div class="cols"><b>Enlaces</b><a href="#quienes">Quiénes somos</a><br><a href="#munmx">MUNMX Esmeralda 2027</a><br><a href="../noticias/">Noticias</a><br><a href="{C['mymun']}" rel="noopener" target="_blank">mymun</a></div>
-<div class="legal"><span>© 2026 ESMUN · PrepaTec Esmeralda. Sitio del grupo estudiantil.</span><span class="ai-note">Fotografías: ESMUN y Conecta (Tecnológico de Monterrey).</span></div>
+<div class="legal"><span>© 2026 ESMUN · PrepaTec Esmeralda. Sitio del grupo estudiantil.</span><span class="ai-note">Fotografías: ESMUN y Conecta (Tecnológico de Monterrey). · <a href="../privacidad/">Aviso de privacidad</a></span></div>
 </div></footer>"""
 
-def contact_form(dark=False):
-    return f"""<form class="form" data-endpoint="{C.get("formspree_contacto","https://formspree.io/f/TU_ID")}" method="post">
+def contact_form(dark=False, PRIV='../privacidad/'):
+    return f"""<form class="form" {form_attrs("contacto")[0]} method="post">{form_attrs("contacto")[1]}
 <div class="row"><label>Nombre<input name="nombre" type="text" autocomplete="name" required></label><label>Correo<input name="correo" type="email" autocomplete="email" required></label></div>
 <label>Soy<select name="perfil"><option>Alumno de la PrepaTec Esmeralda</option><option>Alumno de otra escuela</option><option>Docente o advisor</option><option>Patrocinador o aliado</option></select></label>
 <label>Mensaje<textarea name="mensaje" rows="4" placeholder="Quiero unirme al equipo / registrar a mi delegación en MUNMX 2027 / proponer una alianza"></textarea></label>
 <label style="display:flex;gap:10px;align-items:center;text-transform:none;letter-spacing:0;font-weight:500;font-size:14px"><input type="checkbox" name="avisame" checked style="width:18px;height:18px"> Avísame cuando abra el registro de MUNMX 2027</label>
 <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><button class="btn" type="submit">Enviar</button><span class="form-msg" role="status" aria-live="polite" style="font-size:13px;color:var(--muted)"></span></div>
-<small>Usamos tus datos solo para responderte. Si eres menor de edad, necesitas autorización de tu madre, padre o tutor.</small></form>"""
+<small>Usamos tus datos solo para responderte (<a href="{PRIV}">aviso de privacidad</a>). Si eres menor de edad, necesitas autorización de tu madre, padre o tutor.</small></form>"""
 
 def news_cards(cls='news-card', img=True):
     out=''

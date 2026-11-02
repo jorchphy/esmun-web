@@ -113,7 +113,15 @@
    "#3E3E46"
   ]
  ],
- "dominio": "https://esmun.github.io",
- "formspree_contacto": "https://formspree.io/f/TU_ID",
- "formspree_registro": "https://formspree.io/f/TU_ID_REGISTRO"
+ "dominio": "https://esmun.com.mx",
+ "formularios": {
+  "proveedor": "web3forms",
+  "access_key": "PEGAR_ACCESS_KEY_DE_WEB3FORMS",
+  "_ayuda": "web3forms: 250 envíos/mes gratis, una sola clave para todos los formularios (web3forms.com). Alternativa: proveedor 'formspree' con 'contacto' y 'registro' como URLs."
+ },
+ "analitica": {
+  "ga4": "",
+  "cloudflare": "",
+  "_ayuda": "ga4: ID de medición G-XXXXXXXXXX. cloudflare: token de Cloudflare Web Analytics (sin cookies). Vacío = sin analítica."
+ }
 }
