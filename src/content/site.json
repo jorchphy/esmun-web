@@ -1,0 +1,119 @@
+{
+ "nombre": "ESMUN",
+ "descriptor": "PrepaTec Esmeralda",
+ "ciudad": "Atizapán de Zaragoza, Estado de México",
+ "claim": "Toma la palabra.",
+ "tagline": "Debates. Liderazgo. Impacto.",
+ "intro": "Somos el grupo de Modelo de Naciones Unidas de la PrepaTec Esmeralda. Desde 2019 preparamos delegados para representar a un país, defender su postura en comité y negociar resoluciones. También organizamos MUNMX Esmeralda, la conferencia de nuestra prepa dentro de la red PrepaTec.",
+ "ig": "@esmunmx",
+ "ig_url": "https://www.instagram.com/esmunmx/",
+ "mail": "esmunze@outlook.com",
+ "mymun": "https://mymun.com/conferences/esmun-2024",
+ "stats": [
+  [
+   "2019",
+   "Fundación",
+   "Primer modelo propio, ESMUN jr, en noviembre de 2019."
+  ],
+  [
+   "120",
+   "Delegados",
+   "Convocados en ESMUN 2024, con seis comités en español e inglés."
+  ],
+  [
+   "11",
+   "Comités",
+   "En MUNMX Esmeralda 2026, del Consejo de Seguridad a Star Wars Rebellion."
+  ],
+  [
+   "2",
+   "Idiomas",
+   "Hay comités en español y en inglés. La conferencia también es bilingüe."
+  ]
+ ],
+ "que": [
+  [
+   "Debate",
+   "Cada delegado representa a un país: investiga su postura sobre un tema y la defiende con datos frente a las demás delegaciones."
+  ],
+  [
+   "Negociación",
+   "Lo que cuenta es aprobar una resolución. Por eso aprendemos a ceder, a sumar aliados y a redactar textos que otros puedan firmar."
+  ],
+  [
+   "Liderazgo",
+   "Los alumnos llevan todo: las delegaciones, las mesas directivas y el secretariado que organiza la conferencia cada año."
+  ],
+  [
+   "Impacto",
+   "Hablar en público y argumentar con datos sirve en cualquier carrera. Aquí se practica cada semana, con gente que piensa distinto."
+  ]
+ ],
+ "timeline": [
+  [
+   "2019",
+   "ESMUN jr, primer modelo propio, 22 y 23 de noviembre."
+  ],
+  [
+   "2020",
+   "ESMUN se registra como grupo estudiantil; ESMUN jr 2020 en formato remoto."
+  ],
+  [
+   "2023",
+   "ESMUN SR 2023 y participación en Change the World MUN, Nueva York: mención honorífica y mejor papel de posición."
+  ],
+  [
+   "2024",
+   "ESMUN 2024: 120 delegados, seis comités bilingües en Atizapán de Zaragoza."
+  ],
+  [
+   "2026",
+   "MUNMX Esmeralda 2026: once comités. Nueva identidad visual."
+  ],
+  [
+   "2027",
+   "MUNMX Esmeralda 2027: 11, 12 y 13 de marzo."
+  ]
+ ],
+ "comites": [
+  [
+   "CS",
+   "Consejo de Seguridad",
+   "Experto · Inglés",
+   "#8A1C2B"
+  ],
+  [
+   "AGNU",
+   "Asamblea General",
+   "Principiante · Español",
+   "#2E7D5B"
+  ],
+  [
+   "IAEA",
+   "Organismo Internacional de Energía Atómica",
+   "Intermedio · Inglés",
+   "#C8962E"
+  ],
+  [
+   "UNICEF",
+   "Fondo de las Naciones Unidas para la Infancia",
+   "Principiante · Inglés",
+   "#5B6EA6"
+  ],
+  [
+   "OEA",
+   "Organización de los Estados Americanos",
+   "Intermedio · Español",
+   "#B4452E"
+  ],
+  [
+   "OTAN",
+   "Organización del Tratado del Atlántico Norte",
+   "Experto · Inglés",
+   "#3E3E46"
+  ]
+ ],
+ "dominio": "https://esmun.github.io",
+ "formspree_contacto": "https://formspree.io/f/TU_ID",
+ "formspree_registro": "https://formspree.io/f/TU_ID_REGISTRO"
+}

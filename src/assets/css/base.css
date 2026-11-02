@@ -1,0 +1,86 @@
+/* ESMUN · base compartida de las propuestas web (v1) */
+@font-face{font-family:"League Gothic";font-weight:400;font-display:swap;src:url(../fonts/league-gothic-400.woff2) format("woff2")}
+@font-face{font-family:"Montserrat";font-weight:400;font-display:swap;src:url(../fonts/montserrat-400.woff2) format("woff2")}
+@font-face{font-family:"Montserrat";font-weight:500;font-display:swap;src:url(../fonts/montserrat-500.woff2) format("woff2")}
+@font-face{font-family:"Montserrat";font-weight:600;font-display:swap;src:url(../fonts/montserrat-600.woff2) format("woff2")}
+@font-face{font-family:"Montserrat";font-weight:700;font-display:swap;src:url(../fonts/montserrat-700.woff2) format("woff2")}
+
+:root{
+  --azul:#253C82; --azul-2:#1B477A; --tinta:#1C2030; --papel:#F3F1EC; --gris:#B8B8BA; --gris-2:#A1A1A1; --blanco:#fff;
+  --verde:#2E7D5B; --vino:#8A1C2B; --ocre:#C8962E; --lila:#5B6EA6; --carbon:#3E3E46; --teja:#B4452E;
+  --display:"League Gothic",Impact,"Arial Narrow",sans-serif; --body:"Montserrat","Helvetica Neue",Arial,sans-serif;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --maxw:1280px; --gutter:clamp(16px,4vw,56px);
+  /* tema claro (por defecto) */
+  --bg:var(--blanco); --fg:var(--tinta); --muted:#5B6075; --line:#DADCE5; --accent:var(--azul);
+  --lg-main:var(--azul); --lg-dark:var(--gris-2); --lg-light:var(--gris); --lg-win:var(--gris-2); --lg-lit:#FFE3A6;
+}
+/* secciones oscuras: el logotipo pasa a blanco y las ventanas pueden encenderse */
+[data-theme="dark"]{ --bg:var(--tinta); --fg:#F2F3F8; --muted:#A6ADC6; --line:#2E3550; --accent:#B9C6EE;
+  --lg-main:#fff; --lg-dark:#8E95A8; --lg-light:#B8B8BA; --lg-win:#3A4160; --lg-lit:#FFE3A6; background:var(--bg); color:var(--fg) }
+[data-theme="paper"]{ --bg:var(--papel); background:var(--bg) }
+[data-theme="blue"]{ --bg:var(--azul); --fg:#fff; --muted:#C9D2F0; --line:rgba(255,255,255,.22); --accent:#fff;
+  --lg-main:#fff; --lg-dark:var(--gris-2); --lg-light:var(--gris); --lg-win:var(--gris-2); --lg-lit:var(--gris-2); background:var(--bg); color:var(--fg) }
+
+*{box-sizing:border-box} html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%} a{color:inherit}
+h1,h2,h3,h4{margin:0;font-weight:400;line-height:1}
+.display{font-family:var(--display);text-transform:uppercase;line-height:.86;letter-spacing:.004em;text-wrap:balance}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.lead{font-size:clamp(17px,1.4vw,21px);color:var(--muted);max-width:60ch}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+.btn{display:inline-flex;align-items:center;gap:.6em;padding:.95em 1.4em .9em;border:2px solid var(--accent);background:var(--accent);color:var(--bg);font:700 12px/1 var(--body);letter-spacing:.18em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:transform .25s var(--ease),background .25s,color .25s}
+.btn:hover{transform:translateY(-2px)} .btn.ghost{background:transparent;color:var(--fg);border-color:currentColor} .btn[aria-disabled="true"]{opacity:.55;cursor:not-allowed}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* ---- logotipo reactivo ---- */
+.esmun-logo{width:100%;height:auto;overflow:visible}
+.esmun-logo .win{fill:var(--lg-win);transition:fill .5s var(--ease)}
+.esmun-logo .win.on{fill:var(--lg-lit);filter:drop-shadow(0 0 4px rgba(255,227,166,.75))}
+.site-header:not([data-theme="dark"]) .esmun-logo .win.on{filter:drop-shadow(0 0 3px rgba(255,200,80,.55))}
+@media (prefers-reduced-motion:no-preference){ .esmun-logo .win{transition:fill .45s var(--ease),filter .45s var(--ease)} }
+
+/* ---- revelado al hacer scroll ---- */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.1s} .reveal.d2{transition-delay:.2s} .reveal.d3{transition-delay:.3s}
+html.no-js .reveal{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){ .reveal{opacity:1;transform:none;transition:none} *{animation-duration:.01ms!important;animation-iteration-count:1!important} }
+
+/* ---- cabecera común ---- */
+.site-header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.2) blur(10px);border-bottom:1px solid var(--line);transition:background .4s,color .4s,border-color .4s}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:68px}
+.site-header .brand{display:flex;align-items:center;gap:12px;text-decoration:none} .site-header .brand .esmun-logo{height:44px;width:auto}
+.site-nav{display:flex;gap:clamp(14px,2vw,32px);align-items:center} .site-nav a{text-decoration:none;font-size:12.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--fg);opacity:.85;position:relative;padding:6px 0}
+.site-nav a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--accent);transition:right .3s var(--ease)} .site-nav a:hover::after,.site-nav a.on::after{right:0}
+.site-nav .cta{opacity:1} .menu-btn{display:none}
+/* nav-cta-fix: enlaces sin salto de línea y botón de cabecera con contraste en claro, oscuro y fondos teñidos */
+.site-nav a{white-space:nowrap} .site-nav .cta{background:var(--azul);color:#fff;border-color:var(--azul)} .site-header[data-theme="dark"] .site-nav .cta{background:#fff;color:var(--azul);border-color:#fff}
+@media (max-width:1140px){ .site-nav{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:flex-start;gap:0;background:var(--bg);border-bottom:1px solid var(--line);padding:8px var(--gutter) 16px}
+ .site-nav a{padding:12px 0;font-size:14px} .site-header.open .site-nav{display:flex}
+ .menu-btn{display:inline-flex;flex-direction:column;gap:5px;background:none;border:0;padding:10px;cursor:pointer} .menu-btn i{display:block;width:24px;height:2px;background:var(--fg)} }
+
+/* ---- formularios ---- */
+.form{display:grid;gap:14px} .form label{display:grid;gap:6px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.form input,.form textarea,.form select{font:inherit;font-size:16px;padding:12px 14px;border:1px solid var(--line);border-radius:2px;background:transparent;color:var(--fg);width:100%;min-width:0;box-sizing:border-box} .form label{min-width:0} .form textarea{resize:vertical}
+.form .row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px} @media (max-width:640px){.form .row{grid-template-columns:1fr}}
+.form small{color:var(--muted);font-size:12.5px}
+
+/* ---- pie ---- */
+.site-footer{padding-block:48px 28px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.site-footer .wrap{display:grid;gap:24px;grid-template-columns:1.4fr 1fr 1fr} .site-footer .cols b{display:block;color:var(--fg);margin-bottom:8px;letter-spacing:.14em;text-transform:uppercase;font-size:11px}
+.site-footer a{text-decoration:none} .site-footer a:hover{text-decoration:underline} .site-footer .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:16px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+@media (max-width:760px){.site-footer .wrap{grid-template-columns:1fr}}
+
+/* ---- utilidades ---- */
+.grid{display:grid;gap:clamp(16px,2.5vw,32px)} .g2{grid-template-columns:repeat(2,minmax(0,1fr))} .g3{grid-template-columns:repeat(3,minmax(0,1fr))} .g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:900px){.g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}} @media (max-width:600px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.duo{position:relative;background:var(--azul);overflow:hidden} .duo img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.08);mix-blend-mode:luminosity}
+.pill{display:inline-block;padding:.5em .9em .45em;border:1.5px solid currentColor;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.card{border:1px solid var(--line);border-radius:3px;padding:22px;background:color-mix(in srgb,var(--bg) 92%,var(--fg) 8%)}
+.chip{display:inline-block;background:var(--papel);color:var(--azul);font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:11px;padding:.6em .9em .5em}
+.marquee{overflow:hidden;white-space:nowrap} .marquee span{display:inline-block;padding-right:3em;animation:mq 28s linear infinite} @keyframes mq{to{transform:translateX(-50%)}}
+.num{font-variant-numeric:tabular-nums}
+.ai-note{font-size:12px;color:var(--muted)}

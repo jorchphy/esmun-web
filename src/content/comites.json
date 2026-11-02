@@ -1,0 +1,69 @@
+{
+ "CS": {
+  "sede": "Nueva York",
+  "focus": "Nueva York · ONU",
+  "lon": -74,
+  "bg": "#8A1C2B",
+  "dots": "#D3A9AE",
+  "txt": [
+   "El órgano de la ONU responsable de la paz y la seguridad internacionales. Lo forman quince Estados: cinco permanentes con derecho de veto (China, Estados Unidos, Francia, Reino Unido y Rusia) y diez electos por dos años.",
+   "Sus resoluciones son vinculantes para todos los miembros de la ONU, así que cada palabra se negocia. En el modelo es el comité de nivel experto, con pocas delegaciones y crisis que cambian a mitad de sesión."
+  ]
+ },
+ "AGNU": {
+  "sede": "Nueva York",
+  "focus": "Nueva York · ONU",
+  "lon": -74,
+  "bg": "#2C7457",
+  "dots": "#B0CEC1",
+  "txt": [
+   "La asamblea donde están representados los 193 Estados miembros de la ONU, cada uno con un voto. Debate cualquier asunto de la Carta, aprueba el presupuesto y elige a los miembros no permanentes del Consejo de Seguridad.",
+   "Sus resoluciones son recomendaciones, no obligaciones, y por eso el trabajo es sumar mayorías. Es el comité por el que casi todos empiezan: muchas delegaciones, procedimiento clásico, en español."
+  ]
+ },
+ "IAEA": {
+  "sede": "Viena",
+  "focus": "Viena · OIEA",
+  "lon": 16,
+  "bg": "#C8962E",
+  "dots": "#3E2F10",
+  "light": true,
+  "txt": [
+   "El Organismo Internacional de Energía Atómica promueve el uso pacífico de la energía nuclear y verifica, con inspecciones y salvaguardias, que los programas nucleares no se desvíen a fines militares.",
+   "Un comité técnico: se debate con informes, datos y tratados (el TNP ante todo). Nivel intermedio, en inglés."
+  ]
+ },
+ "UNICEF": {
+  "sede": "Nueva York",
+  "focus": "Nueva York · ONU",
+  "lon": -74,
+  "bg": "#55669A",
+  "dots": "#C1C8DD",
+  "txt": [
+   "El Fondo de las Naciones Unidas para la Infancia trabaja por los derechos de niñas, niños y adolescentes: salud, nutrición, educación y protección, en más de 190 países y territorios.",
+   "Un comité de programas y cooperación: aquí se discute qué se puede financiar y ejecutar, más que quién tiene razón. Nivel principiante, en inglés."
+  ]
+ },
+ "OEA": {
+  "sede": "Washington",
+  "focus": "Washington · OEA",
+  "lon": -77,
+  "bg": "#AC432E",
+  "dots": "#E2B8B0",
+  "txt": [
+   "La Organización de los Estados Americanos reúne a los 35 Estados del continente. Sus pilares son la democracia, los derechos humanos, la seguridad y el desarrollo.",
+   "Un comité regional en español: los temas son los de América Latina y el Caribe, y las alianzas se parecen mucho a las reales. Nivel intermedio."
+  ]
+ },
+ "OTAN": {
+  "sede": "Bruselas",
+  "focus": "Bruselas · OTAN",
+  "lon": 4,
+  "bg": "#3E3E46",
+  "dots": "#B6B6B9",
+  "txt": [
+   "La Organización del Tratado del Atlántico Norte es una alianza político-militar de 32 países de Europa y Norteamérica. Su artículo 5 establece que un ataque contra uno es un ataque contra todos.",
+   "En el modelo, el Consejo del Atlántico Norte decide por consenso: nadie vota, todos tienen que estar de acuerdo. Nivel experto, en inglés."
+  ]
+ }
+}
