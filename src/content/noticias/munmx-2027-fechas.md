@@ -2,7 +2,7 @@
 fecha: 2026-11-02
 etiqueta: MUNMX 2027
 titulo: MUNMX Esmeralda 2027 ya tiene fechas: 11, 12 y 13 de marzo
-resumen: Tres días de comités en la PrepaTec Esmeralda. La lista de comités y la apertura del registro se anuncian con la convocatoria.
+resumen: El Modelo de Naciones Unidas de la PrepaTec Esmeralda: tres días de comités. La lista de comités y la apertura del registro se anuncian con la convocatoria.
 foto: real/edificio_banner.jpg
 alt: Fachada de la PrepaTec Esmeralda
 pie: PrepaTec Esmeralda, sede de MUNMX Esmeralda 2027. Foto: ESMUN.

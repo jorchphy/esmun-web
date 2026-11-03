@@ -71,7 +71,7 @@ def p6():
 <section id="munmx" data-section data-theme="dark" data-globe="munmx"><div class="wrap">
  <p class="eyebrow reveal" style="color:#B9C6EE">MUNMX Esmeralda 2027 · PrepaTec Esmeralda</p><h2 class="display reveal d1">11 · 12 · 13<br>de marzo</h2>
  <img class="lockup reveal d2" src="{A}/logo/MUNMX_2027_lockup_horizontal_blanco.svg" alt="MUNMX Esmeralda 2027">
- <p class="lead reveal d2">Tres días y ocho comités, en inglés y en español, en la PrepaTec Esmeralda. El registro abre con la convocatoria; mientras, las delegaciones pueden pre-registrarse.</p>
+ <p class="lead reveal d2">El Modelo de Naciones Unidas de la PrepaTec Esmeralda: tres días y ocho comités, en inglés y en español. El registro abre con la convocatoria; mientras, las delegaciones pueden pre-registrarse.</p>
  <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:26px" class="reveal d3"><a class="btn" href="#contacto">Avísame</a><a class="btn ghost" href="{C['mymun']}" rel="noopener" target="_blank">ESMUN 2024 en mymun</a></div>
  <ul class="comites">{comite_list()}</ul>
 </div></section>

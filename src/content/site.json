@@ -4,7 +4,7 @@
  "ciudad": "Atizapán de Zaragoza, Estado de México",
  "claim": "Toma la palabra.",
  "tagline": "Debates. Liderazgo. Impacto.",
- "intro": "Somos el grupo de Modelo de Naciones Unidas de la PrepaTec Esmeralda. Desde 2019 preparamos delegados para representar a un país, defender su postura en comité y negociar resoluciones. También organizamos MUNMX Esmeralda, la conferencia de nuestra prepa dentro de la red PrepaTec.",
+ "intro": "Somos el grupo de Modelo de Naciones Unidas de la PrepaTec Esmeralda. Desde 2019 preparamos delegados para representar a un país, defender su postura en comité y negociar resoluciones. También organizamos MUNMX Esmeralda, el Modelo de Naciones Unidas de nuestra prepa dentro de la red PrepaTec.",
  "ig": "@esmunmx",
  "ig_url": "https://www.instagram.com/esmunmx/",
  "mail": "esmunze@outlook.com",
@@ -28,7 +28,7 @@
   [
    "2",
    "Idiomas",
-   "Hay comités en español y en inglés. La conferencia también es bilingüe."
+   "Hay comités en español y en inglés. El modelo también es bilingüe."
   ]
  ],
  "que": [
@@ -42,7 +42,7 @@
   ],
   [
    "Liderazgo",
-   "Los alumnos llevan todo: las delegaciones, las mesas directivas y el secretariado que organiza la conferencia cada año."
+   "Los alumnos llevan todo: las delegaciones, las mesas directivas y el secretariado que organiza el modelo cada año."
   ],
   [
    "Impacto",
@@ -180,7 +180,7 @@
    },
    {
     "nombre": "Patrocinador",
-    "desc": "Cubre un comité o un rubro de la conferencia (gafetes, placas, coffee break, guías de estudio).",
+    "desc": "Cubre un comité o un rubro del modelo (gafetes, placas, coffee break, guías de estudio).",
     "beneficios": [
      "Todo lo anterior",
      "Logotipo en gafetes, placas o material del rubro patrocinado",
@@ -190,7 +190,7 @@
    },
    {
     "nombre": "Patrocinador principal",
-    "desc": "Hace posible la conferencia completa.",
+    "desc": "Hace posible el modelo completo.",
     "beneficios": [
      "Todo lo anterior",
      "Nombre asociado a la edición en comunicados y sitio",
@@ -205,7 +205,7 @@
    "Coffee break y comidas para delegados y mesas",
    "Reconocimientos y premios",
    "Transporte de delegaciones externas",
-   "Fotografía y video de la conferencia"
+   "Fotografía y video del modelo"
   ],
   "logos": []
  }

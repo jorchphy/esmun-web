@@ -12,7 +12,7 @@ ESMUN tiene identidad nueva. El logotipo es el edificio de la prepa: el bloque b
 
 ## Qué cambia
 
-Se mantiene el emblema circular de MUNMX, ahora con una versión de una tinta y una variante para la edición 2027 con la leyenda "Próximamente". Los dos logotipos conviven en una cofirma para piezas de la conferencia.
+Se mantiene el emblema circular de MUNMX, ahora con una versión de una tinta y una variante para la edición 2027 con la leyenda "Próximamente". Los dos logotipos conviven en una cofirma para piezas del modelo.
 
 ## El manual
 
