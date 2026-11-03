@@ -1,0 +1,10 @@
+{
+  // Cloudflare Workers (static assets). El sitio se genera con `python3 src/build.py` en _site/.
+  "name": "esmun-web",
+  "compatibility_date": "2026-01-01",
+  "assets": {
+    "directory": "./_site",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  }
+}

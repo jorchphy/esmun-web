@@ -1,8 +1,6 @@
 name: Construir y publicar el sitio
 on:
-  push:
-    branches: [main]
-  workflow_dispatch:
+  workflow_dispatch:   # el sitio se publica en Cloudflare; este flujo (GitHub Pages) queda como respaldo manual
 permissions:
   contents: read
   pages: write
