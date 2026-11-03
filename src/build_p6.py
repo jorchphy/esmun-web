@@ -63,7 +63,7 @@ def p6():
 </div></section>
 
 <section class="q" id="quienes" data-section data-theme="paper" data-globe="quienes"><div class="wrap">
- <div class="content shield"><p class="eyebrow reveal">Quiénes somos</p><p class="lead reveal d1" style="margin-top:14px">{C['intro']}</p>
+ <div class="content shield"><p class="eyebrow reveal">Quiénes somos</p><p class="lead reveal d1" style="margin-top:14px">{C.get('intro_quienes', C['intro'])}</p>
   <div class="stats">{''.join(f'<div class="reveal d{i%4}"><div class="n num" {"data-count="+n if n.isdigit() and n!="2019" else ""}>{n}</div><b>{l}</b><p>{p}</p></div>' for i,(n,l,p) in enumerate(C['stats']))}</div>
   <div class="que">{''.join(f'<div class="reveal d{i%4}"><h3>{t}</h3><p>{p}</p></div>' for i,(t,p) in enumerate(C['que']))}</div></div>
 </div></section>
