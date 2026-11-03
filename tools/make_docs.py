@@ -31,7 +31,7 @@ h2{{font:700 8.5pt/1.4 Montserrat;letter-spacing:.14em;text-transform:uppercase;
 .meta{{display:grid;grid-template-columns:auto 1fr;gap:.8mm 6mm;font-size:9.5pt;margin:0 0 2mm;padding-bottom:3mm;border-bottom:1px solid #DADCE5}} .meta b{{font-size:8pt;letter-spacing:.12em;text-transform:uppercase;color:{GRIS};padding-top:1pt}}
 p{{margin:0 0 2.5mm;text-align:left}} .body{{padding:0}} .tag{{display:inline-block;background:{AZUL};color:#fff;font-size:7.5pt;letter-spacing:.14em;text-transform:uppercase;padding:2px 7px;border-radius:2px;margin-bottom:4mm}}
 ol.op{{padding-left:6mm;margin:2mm 0 0}} ol.op li{{margin-bottom:1.6mm;padding-left:1mm}} .pre p{{margin-bottom:1.6mm}} em{{font-style:italic}}
-.note{{font-size:8pt;line-height:1.4;color:{GRIS};border-left:3px solid #C8962E;padding:.5mm 0 .5mm 4mm;margin:0 0 4mm}}
+.note{{font-size:8.5pt;line-height:1.45;color:{GRIS};margin:0 0 5mm}}
 .sig{{margin-top:10mm;display:grid;grid-template-columns:1fr 1fr;gap:10mm}} .sig b{{display:block}} .sig span{{font-size:8pt;color:{GRIS};letter-spacing:.1em;text-transform:uppercase}}
 """
 
