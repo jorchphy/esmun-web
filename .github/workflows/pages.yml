@@ -18,6 +18,8 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: '3.12' }
       - run: python3 src/build.py
+        env:
+          ESMUN_MODO: ${{ vars.ESMUN_MODO }}   # vacío = lo que diga content/site.json; 'completo' o 'proximamente' para forzar
       - uses: actions/upload-pages-artifact@v3
         with: { path: _site }
   deploy:

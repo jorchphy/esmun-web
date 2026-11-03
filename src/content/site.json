@@ -126,6 +126,10 @@
   ]
  ],
  "dominio": "https://esmun.com.mx",
+ "publicacion": {
+  "modo": "proximamente",
+  "_ayuda": "proximamente = solo la portada de 'muy pronto' (con aviso por correo). completo = todo el sitio. Se puede forzar con la variable ESMUN_MODO en el hosting sin tocar este archivo."
+ },
  "formularios": {
   "proveedor": "web3forms",
   "access_key": "PEGAR_ACCESS_KEY_DE_WEB3FORMS",

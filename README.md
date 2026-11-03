@@ -46,3 +46,19 @@ Copiar cualquier archivo de `src/content/noticias/`, renombrarlo (el nombre es l
 
 ## Documentos con membrete
 `python3 tools/make_docs.py` regenera el membrete de la carta (DOCX y PDF) y los ejemplos de papel de posición y resolución en `src/assets/docs/`. Para publicar la carta real: pegar el texto en `Membrete_MUNMX_2027_carta.docx`, exportar a PDF como `Carta_bienvenida_MUNMX_2027.pdf` en `src/assets/docs/` y poner `"disponible": true` en `descargas`. El protocolo se publica igual: `Protocolo_MUNMX_2027.pdf` + `disponible: true`.
+
+## Publicación por etapas
+
+El sitio tiene dos modos. Se eligen en `src/content/site.json` → `publicacion.modo`:
+
+| Modo | Qué se publica |
+|---|---|
+| `proximamente` | Solo la portada de "muy pronto": fechas de MUNMX 2027, cuenta regresiva y formulario de aviso por correo. Sin subpáginas. |
+| `completo` | Todo el sitio. |
+
+El modo también se puede forzar sin tocar el archivo, con la variable de entorno `ESMUN_MODO` (en GitHub: *Settings → Secrets and variables → Actions → Variables*; en Cloudflare Pages: *Settings → Environment variables*). Así, el dominio principal puede mostrar "próximamente" mientras una rama o entorno de vista previa publica el sitio completo en un subdominio temporal.
+
+Para construir localmente un modo u otro: `python3 src/build.py completo` o `python3 src/build.py proximamente`.
+
+Para abrir el sitio al público: cambiar `publicacion.modo` a `completo` (o la variable `ESMUN_MODO` en el hosting) y publicar.
+
