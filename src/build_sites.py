@@ -56,7 +56,7 @@ def head(title, desc, css, path_prefix='..', extra=''):
 <link rel="icon" href="{path_prefix}/assets/logo/ESMUN_favicon_32.png"><link rel="apple-touch-icon" href="{path_prefix}/assets/logo/ESMUN_favicon_180.png">
 <link rel="stylesheet" href="{path_prefix}/assets/css/base.css"><link rel="stylesheet" href="{css}">
 <script type="application/ld+json">{json.dumps({"@context":"https://schema.org","@type":"Organization","name":"ESMUN · Modelo de Naciones Unidas PrepaTec Esmeralda","alternateName":"ESMUN","url":C.get("dominio","https://esmun.github.io")+"/","logo":C.get("dominio","https://esmun.github.io")+"/assets/logo/ESMUN_favicon_180.png","sameAs":[C['ig_url']],"email":C['mail'],"parentOrganization":{"@type":"EducationalOrganization","name":"PrepaTec Esmeralda"},"address":{"@type":"PostalAddress","addressLocality":"Atizapán de Zaragoza","addressRegion":"Estado de México","addressCountry":"MX"}},ensure_ascii=False)}</script>
-{extra}{analytics()}<script>document.documentElement.classList.remove('no-js')</script></head><body>"""
+{extra}{analytics()}<script type="application/json" id="season-cfg">{json.dumps(C.get('temporada',{}),ensure_ascii=False)}</script><script>document.documentElement.classList.remove('no-js')</script></head><body>"""
 
 NAV=[('#inicio','Inicio'),('#quienes','Quiénes somos'),('#munmx','MUNMX 2027'),('#noticias','Noticias'),('#contacto','Contacto')]
 def header(logo_kind='horizontal', cta=('#munmx','Próximamente')):
@@ -89,7 +89,7 @@ def news_cards(cls='news-card', img=True):
 <div class="meta"><time datetime="{date}">{date[8:]}·{date[5:7]}·{date[:4]}</time><span class="pill">{tag}</span></div><h3>{title}</h3><p>{desc}</p></a></article>"""
     return out
 
-def scripts(prefix='..'): return f'<script src="{prefix}/assets/js/esmun.js" defer></script></body></html>'
+def scripts(prefix='..'): return f'<script src="{prefix}/assets/js/esmun.js" defer></script><script src="{prefix}/assets/js/season.js" defer></script></body></html>'
 
 def comite_list(cls='com'):
     return ''.join(f'<li class="{cls} reveal" style="--acc:{c[3]}"><span class="display sig">{c[0]}</span><span class="nm">{c[1]}</span><span class="lv">{c[2]}</span></li>' for c in C['comites'])

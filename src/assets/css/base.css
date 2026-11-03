@@ -86,3 +86,5 @@ html.no-js .reveal{opacity:1;transform:none}
 .ai-note{font-size:12px;color:var(--muted)}
 
 .form .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+
+.site-header .brand{position:relative;display:inline-block} .site-header .brand canvas.season{position:absolute;pointer-events:none;z-index:2}

@@ -37,7 +37,7 @@ def head(title, desc, prefix, path, extra=''):
     return h
 
 def scripts(prefix):
-    return f'<script src="{prefix}assets/js/land.js" defer></script><script src="{prefix}assets/js/esmun.js" defer></script><script src="{prefix}assets/js/globe.js" defer></script></body></html>'
+    return f'<script src="{prefix}assets/js/land.js" defer></script><script src="{prefix}assets/js/esmun.js" defer></script><script src="{prefix}assets/js/season.js" defer></script><script src="{prefix}assets/js/globe.js" defer></script></body></html>'
 
 def slug(s): return s.lower().replace(' ', '-')
 

@@ -43,7 +43,7 @@ def build():
     body = P6.p6()
     body = body.replace('<header class="site-header"', SKIP + '<header class="site-header"', 1)
     body = body.replace('<div id="globe" aria-hidden="true">', '<div id="globe" aria-hidden="true" data-three="assets/js/three.min.js">')
-    html_ = head + body + '<script src="assets/js/land.js" defer></script><script src="assets/js/esmun.js" defer></script><script src="assets/js/globe.js" defer></script></body></html>'
+    html_ = head + body + '<script src="assets/js/land.js" defer></script><script src="assets/js/esmun.js" defer></script><script src="assets/js/season.js" defer></script><script src="assets/js/globe.js" defer></script></body></html>'
     (OUT / 'index.html').write_text(rootify(html_), encoding='utf-8')
 
     # blog: regenerar en site/ y copiar, apuntando la cabecera a la raíz
@@ -61,7 +61,7 @@ def build():
     (OUT / 'noticias' / 'convocatoria-delegados-2026-27.html').write_text('<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=./"><title>Noticias · ESMUN</title></head><body><a href="./">Noticias</a></body></html>', encoding='utf-8')
     # 404
     h404 = B.head('Página no encontrada · ESMUN', 'Esta página no existe.', 'style.css', path_prefix='.').replace('href="./assets/', 'href="assets/')
-    h404 += f'''<main class="wrap" style="min-height:70vh;display:grid;align-content:center;gap:18px;padding-block:80px"><p class="eyebrow">Error 404</p><h1 class="display" style="font-size:clamp(64px,12vw,180px);line-height:.85">Sin quórum.</h1><p class="lead" style="max-width:48ch">Esta página no existe o cambió de lugar. Vuelve al inicio o escríbenos a <a href="mailto:{B.C['mail']}">{B.C['mail']}</a>.</p><p><a class="btn" href="./">Ir al inicio</a></p></main>''' + B.footer('dark').replace('href="../noticias/"', 'href="noticias/"') + '<script src="assets/js/esmun.js" defer></script></body></html>'
+    h404 += f'''<main class="wrap" style="min-height:70vh;display:grid;align-content:center;gap:18px;padding-block:80px"><p class="eyebrow">Error 404</p><h1 class="display" style="font-size:clamp(64px,12vw,180px);line-height:.85">Sin quórum.</h1><p class="lead" style="max-width:48ch">Esta página no existe o cambió de lugar. Vuelve al inicio o escríbenos a <a href="mailto:{B.C['mail']}">{B.C['mail']}</a>.</p><p><a class="btn" href="./">Ir al inicio</a></p></main>''' + B.footer('dark').replace('href="../noticias/"', 'href="noticias/"') + '<script src="assets/js/esmun.js" defer></script><script src="assets/js/season.js" defer></script></body></html>'
     (OUT / '404.html').write_text(h404, encoding='utf-8')
 
     # robots, sitemap, manifest
