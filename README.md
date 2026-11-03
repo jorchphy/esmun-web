@@ -62,3 +62,12 @@ Para construir localmente un modo u otro: `python3 src/build.py completo` o `pyt
 
 Para abrir el sitio al público: cambiar `publicacion.modo` a `completo` (o la variable `ESMUN_MODO` en el hosting) y publicar.
 
+## Dónde se publica
+
+| Proyecto en Cloudflare | Rama | Qué muestra | URL |
+|---|---|---|---|
+| `esmun-web` | `main` | Lo que diga `publicacion.modo` (hoy, «Próximamente») | esmun-web.jorch-imr.workers.dev → esmun.com.mx |
+| `esmun-vista` | `vista` | Sitio completo (variable `ESMUN_MODO=completo`) | esmun-vista.jorch-imr.workers.dev → vista.esmun.com.mx |
+
+Cada *push* reconstruye el proyecto de su rama (`python3 src/build.py` → `_site/` → `npx wrangler deploy`). La configuración de Workers está en `wrangler.jsonc`; el proyecto `esmun-vista` usa `npx wrangler deploy --name esmun-vista` como comando de despliegue para no pisar a `esmun-web`.
+
