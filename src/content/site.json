@@ -213,6 +213,6 @@
  "temporada": {
   "modo": "auto",
   "manual": "otono",
-  "_ayuda": "modo: auto (por fecha), manual (usa 'manual') u off. Valores: otono, muertos, onu, independencia, invierno, primavera, munmx, mujer. Partículas solo sobre el logotipo de la cabecera."
+  "_ayuda": "modo: auto (por fecha), manual (siempre la de 'manual') u off. Valores: otono, muertos, onu, independencia, invierno, primavera, munmx, mujer, bandera, bosques, agua, tierra, ambiente, oceanos, juventud, paz, infancia, naranja, ddhh, navidad, anonuevo. Calendario en src/assets/js/season.js."
  }
 }

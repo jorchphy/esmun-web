@@ -56,7 +56,7 @@ def head(title, desc, css, path_prefix='..', extra=''):
 <link rel="icon" href="{path_prefix}/assets/logo/ESMUN_favicon_32.png"><link rel="apple-touch-icon" href="{path_prefix}/assets/logo/ESMUN_favicon_180.png">
 <link rel="stylesheet" href="{path_prefix}/assets/css/base.css"><link rel="stylesheet" href="{css}">
 <script type="application/ld+json">{json.dumps({"@context":"https://schema.org","@type":"Organization","name":"ESMUN · Modelo de Naciones Unidas PrepaTec Esmeralda","alternateName":"ESMUN","url":C.get("dominio","https://esmun.github.io")+"/","logo":C.get("dominio","https://esmun.github.io")+"/assets/logo/ESMUN_favicon_180.png","sameAs":[C['ig_url']],"email":C['mail'],"parentOrganization":{"@type":"EducationalOrganization","name":"PrepaTec Esmeralda"},"address":{"@type":"PostalAddress","addressLocality":"Atizapán de Zaragoza","addressRegion":"Estado de México","addressCountry":"MX"}},ensure_ascii=False)}</script>
-{extra}{analytics()}<script type="application/json" id="season-cfg">{json.dumps(C.get('temporada',{}),ensure_ascii=False)}</script><script>document.documentElement.classList.remove('no-js')</script></head><body>"""
+{extra}{analytics()}<script type="application/json" id="season-cfg">{json.dumps({k:v for k,v in C.get('temporada',{}).items() if not k.startswith('_')},ensure_ascii=False)}</script><script>document.documentElement.classList.remove('no-js')</script></head><body>"""
 
 NAV=[('#inicio','Inicio'),('#quienes','Quiénes somos'),('#munmx','MUNMX 2027'),('#noticias','Noticias'),('#contacto','Contacto')]
 def header(logo_kind='horizontal', cta=('#munmx','Próximamente')):
