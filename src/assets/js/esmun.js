@@ -1,6 +1,9 @@
 /* ESMUN · comportamiento compartido: logotipo reactivo al fondo, revelados, cabecera, formulario. Sin dependencias. */
 (function () {
   document.documentElement.classList.remove('no-js');
+  /* Al entrar en una página sin ancla, empezar arriba (algunos visores conservan la altura de scroll entre páginas). "arriba al entrar" */
+  if (!location.hash) { var de = document.documentElement, prev = de.style.scrollBehavior; de.style.scrollBehavior = 'auto'; window.scrollTo(0, 0); requestAnimationFrame(function () { de.style.scrollBehavior = prev; }); }
+  window.addEventListener('pageshow', function (ev) { if (!ev.persisted && !location.hash) window.scrollTo(0, 0); });
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- Logotipo: ventanas que se encienden sobre fondo oscuro ----------
