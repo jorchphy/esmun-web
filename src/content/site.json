@@ -1,168 +1,172 @@
 {
- "nombre": "ESMUN",
- "descriptor": "PrepaTec Esmeralda",
- "ciudad": "Atizapán de Zaragoza, Estado de México",
- "claim": "Toma la palabra.",
- "tagline": "Debates. Liderazgo. Impacto.",
- "intro": "Somos el grupo de Modelo de Naciones Unidas de la PrepaTec Esmeralda. Desde 2019 preparamos delegados para representar a un país, defender su postura en comité y negociar resoluciones. También organizamos MUNMX Esmeralda, el Modelo de Naciones Unidas de nuestra prepa dentro de la red PrepaTec.",
- "ig": "@esmunmx",
- "ig_url": "https://www.instagram.com/esmunmx/",
- "mail": "esmunze@outlook.com",
- "mymun": "https://mymun.com/conferences/esmun-2024",
- "stats": [
-  {
-   "cifra": "2019",
-   "titulo": "Fundación",
-   "texto": "Primer modelo propio, ESMUN jr, en noviembre de 2019."
-  },
-  {
-   "cifra": "120",
-   "titulo": "Delegados",
-   "texto": "Convocados en ESMUN 2024, con seis comités en español e inglés."
-  },
-  {
-   "cifra": "8",
-   "titulo": "Comités",
-   "texto": "En MUNMX Esmeralda 2027: de la Asamblea General al Senado de la República."
-  },
-  {
-   "cifra": "2",
-   "titulo": "Idiomas",
-   "texto": "Hay comités en español y en inglés. El modelo también es bilingüe."
-  }
- ],
- "que": [
-  {
-   "titulo": "Debate",
-   "texto": "Cada delegado representa a un país: investiga su postura sobre un tema y la defiende con datos frente a las demás delegaciones."
-  },
-  {
-   "titulo": "Negociación",
-   "texto": "Lo que cuenta es aprobar una resolución. Por eso aprendemos a ceder, a sumar aliados y a redactar textos que otros puedan firmar."
-  },
-  {
-   "titulo": "Liderazgo",
-   "texto": "Los alumnos llevan todo: las delegaciones, las mesas directivas y el secretariado que organiza el modelo cada año."
-  },
-  {
-   "titulo": "Impacto",
-   "texto": "Hablar en público y argumentar con datos sirve en cualquier carrera. Aquí se practica cada semana, con gente que piensa distinto."
-  }
- ],
- "timeline": [
-  {
-   "anio": "2019",
-   "texto": "ESMUN jr, primer modelo propio, 22 y 23 de noviembre."
-  },
-  {
-   "anio": "2020",
-   "texto": "ESMUN se registra como grupo estudiantil; ESMUN jr 2020 en formato remoto."
-  },
-  {
-   "anio": "2023",
-   "texto": "ESMUN SR 2023 y participación en Change the World MUN, Nueva York: mención honorífica y mejor papel de posición."
-  },
-  {
-   "anio": "2024",
-   "texto": "ESMUN 2024: 120 delegados, seis comités bilingües en Atizapán de Zaragoza."
-  },
-  {
-   "anio": "2026",
-   "texto": "MUNMX Esmeralda 2026: once comités. Nueva identidad visual."
-  },
-  {
-   "anio": "2027",
-   "texto": "MUNMX Esmeralda 2027: 11, 12 y 13 de marzo."
-  }
- ],
- "dominio": "https://esmun.com.mx",
- "publicacion": {
-  "modo": "proximamente"
- },
- "formularios": {
-  "proveedor": "web3forms",
-  "access_key": "PEGAR_ACCESS_KEY_DE_WEB3FORMS"
- },
- "analitica": {
-  "ga4": "",
-  "cloudflare": ""
- },
- "descargas": [
-  {
-   "titulo": "Protocolo del modelo",
-   "desc": "Reglas de procedimiento, formato de debate, mociones y puntos. El documento oficial de MUNMX Esmeralda 2027.",
-   "archivo": "docs/Protocolo_MUNMX_2027.pdf",
-   "disponible": false,
-   "nota": "Se publica con la convocatoria"
-  },
-  {
-   "titulo": "Ejemplo de papel de posición",
-   "desc": "Una página: antecedentes, postura del país, acciones previas y propuestas. Con el formato que se pide en el modelo.",
-   "archivo": "docs/Ejemplo_position_paper.pdf",
-   "editable": "docs/Ejemplo_position_paper.docx",
-   "disponible": true
-  },
-  {
-   "titulo": "Ejemplo de proyecto de resolución",
-   "desc": "Cláusulas preambulares y operativas, patrocinadores y firmantes, con la redacción y puntuación correctas.",
-   "archivo": "docs/Ejemplo_resolucion.pdf",
-   "editable": "docs/Ejemplo_resolucion.docx",
-   "disponible": true
-  },
-  {
-   "titulo": "Carta de bienvenida de la mesa",
-   "desc": "Carta de la Presidencia y la Vicepresidencia a las y los delegados de MUNMX Esmeralda 2027.",
-   "archivo": "docs/Carta_bienvenida_MUNMX_2027.pdf",
-   "disponible": false,
-   "nota": "En preparación"
-  }
- ],
- "patrocinios": {
-  "contacto_asunto": "Patrocinio MUNMX Esmeralda 2027",
-  "niveles": [
-   {
-    "nombre": "Aliado",
-    "desc": "Apoyo en especie o aportación puntual.",
-    "beneficios": [
-     "Logotipo en la página de patrocinios del sitio",
-     "Mención en redes sociales de ESMUN",
-     "Agradecimiento en la ceremonia de clausura"
-    ]
-   },
-   {
-    "nombre": "Patrocinador",
-    "desc": "Cubre un comité o un rubro del modelo (gafetes, placas, coffee break, guías de estudio).",
-    "beneficios": [
-     "Todo lo anterior",
-     "Logotipo en gafetes, placas o material del rubro patrocinado",
-     "Logotipo en el backdrop de ceremonias y en las piezas de redes",
-     "Reconocimiento firmado por ESMUN y la PrepaTec Esmeralda"
-    ]
-   },
-   {
-    "nombre": "Patrocinador principal",
-    "desc": "Hace posible el modelo completo.",
-    "beneficios": [
-     "Todo lo anterior",
-     "Nombre asociado a la edición en comunicados y sitio",
-     "Espacio de presencia en el campus durante los tres días",
-     "Participación en la ceremonia de inauguración",
-     "Informe de resultados con cifras de la edición"
-    ]
-   }
+  "claim": "Toma la palabra.",
+  "tagline": "Debates. Liderazgo. Impacto.",
+  "intro": "Somos el grupo de Modelo de Naciones Unidas de la PrepaTec Esmeralda. Desde 2019 preparamos delegados para representar a un país, defender su postura en comité y negociar resoluciones. También organizamos MUNMX Esmeralda, el Modelo de Naciones Unidas de nuestra prepa dentro de la red PrepaTec.",
+  "intro_quienes": "Entrenamos delegados para los modelos de otras escuelas y organizamos el nuestro. En las sesiones se investiga un país, se escribe el papel de posición y se ensaya el debate; en marzo, ese mismo equipo forma el secretariado y las mesas directivas de MUNMX Esmeralda.",
+  "ciudad": "Atizapán de Zaragoza, Estado de México",
+  "mail": "esmunze@outlook.com",
+  "ig": "@esmunmx",
+  "ig_url": "https://www.instagram.com/esmunmx/",
+  "mymun": "https://mymun.com/conferences/esmun-2024",
+  "stats": [
+    {
+      "cifra": "2019",
+      "titulo": "Fundación",
+      "texto": "Primer modelo propio, ESMUN jr, en noviembre de 2019."
+    },
+    {
+      "cifra": "120",
+      "titulo": "Delegados",
+      "texto": "Convocados en ESMUN 2024, con seis comités en español e inglés."
+    },
+    {
+      "cifra": "8",
+      "titulo": "Comités",
+      "texto": "En MUNMX Esmeralda 2027: de la Asamblea General al Senado de la República."
+    },
+    {
+      "cifra": "2",
+      "titulo": "Idiomas",
+      "texto": "Hay comités en español y en inglés. El modelo también es bilingüe."
+    }
   ],
-  "en_especie": [
-   "Impresión de gafetes, placas y carteles",
-   "Coffee break y comidas para delegados y mesas",
-   "Reconocimientos y premios",
-   "Transporte de delegaciones externas",
-   "Fotografía y video del modelo"
+  "que": [
+    {
+      "titulo": "Debate",
+      "texto": "Cada delegado representa a un país: investiga su postura sobre un tema y la defiende con datos frente a las demás delegaciones."
+    },
+    {
+      "titulo": "Negociación",
+      "texto": "Lo que cuenta es aprobar una resolución. Por eso aprendemos a ceder, a sumar aliados y a redactar textos que otros puedan firmar."
+    },
+    {
+      "titulo": "Liderazgo",
+      "texto": "Los alumnos llevan todo: las delegaciones, las mesas directivas y el secretariado que organiza el modelo cada año."
+    },
+    {
+      "titulo": "Impacto",
+      "texto": "Hablar en público y argumentar con datos sirve en cualquier carrera. Aquí se practica cada semana, con gente que piensa distinto."
+    }
   ],
-  "logos": []
- },
- "intro_quienes": "Entrenamos delegados para los modelos de otras escuelas y organizamos el nuestro. En las sesiones se investiga un país, se escribe el papel de posición y se ensaya el debate; en marzo, ese mismo equipo forma el secretariado y las mesas directivas de MUNMX Esmeralda.",
- "temporada": {
-  "modo": "auto",
-  "manual": "otono"
- }
+  "timeline": [
+    {
+      "anio": "2019",
+      "texto": "ESMUN jr, primer modelo propio, 22 y 23 de noviembre."
+    },
+    {
+      "anio": "2020",
+      "texto": "ESMUN se registra como grupo estudiantil; ESMUN jr 2020 en formato remoto."
+    },
+    {
+      "anio": "2023",
+      "texto": "ESMUN SR 2023 y participación en Change the World MUN, Nueva York: mención honorífica y mejor papel de posición."
+    },
+    {
+      "anio": "2024",
+      "texto": "ESMUN 2024: 120 delegados, seis comités bilingües en Atizapán de Zaragoza."
+    },
+    {
+      "anio": "2026",
+      "texto": "MUNMX Esmeralda 2026: once comités. Nueva identidad visual."
+    },
+    {
+      "anio": "2027",
+      "texto": "MUNMX Esmeralda 2027: 11, 12 y 13 de marzo."
+    }
+  ],
+  "descargas": [
+    {
+      "titulo": "Protocolo del modelo",
+      "desc": "Reglas de procedimiento, formato de debate, mociones y puntos. El documento oficial de MUNMX Esmeralda 2027.",
+      "archivo": "docs/Protocolo_MUNMX_2027.pdf",
+      "editable": "",
+      "disponible": false,
+      "nota": "Se publica con la convocatoria"
+    },
+    {
+      "titulo": "Ejemplo de papel de posición",
+      "desc": "Una página: antecedentes, postura del país, acciones previas y propuestas. Con el formato que se pide en el modelo.",
+      "archivo": "docs/Ejemplo_position_paper.pdf",
+      "editable": "docs/Ejemplo_position_paper.docx",
+      "disponible": true,
+      "nota": ""
+    },
+    {
+      "titulo": "Ejemplo de proyecto de resolución",
+      "desc": "Cláusulas preambulares y operativas, patrocinadores y firmantes, con la redacción y puntuación correctas.",
+      "archivo": "docs/Ejemplo_resolucion.pdf",
+      "editable": "docs/Ejemplo_resolucion.docx",
+      "disponible": true,
+      "nota": ""
+    },
+    {
+      "titulo": "Carta de bienvenida de la mesa",
+      "desc": "Carta de la Presidencia y la Vicepresidencia a las y los delegados de MUNMX Esmeralda 2027.",
+      "archivo": "docs/Carta_bienvenida_MUNMX_2027.pdf",
+      "editable": "",
+      "disponible": false,
+      "nota": "En preparación"
+    }
+  ],
+  "patrocinios": {
+    "contacto_asunto": "Patrocinio MUNMX Esmeralda 2027",
+    "niveles": [
+      {
+        "nombre": "Aliado",
+        "desc": "Apoyo en especie o aportación puntual.",
+        "beneficios": [
+          "Logotipo en la página de patrocinios del sitio",
+          "Mención en redes sociales de ESMUN",
+          "Agradecimiento en la ceremonia de clausura"
+        ]
+      },
+      {
+        "nombre": "Patrocinador",
+        "desc": "Cubre un comité o un rubro del modelo (gafetes, placas, coffee break, guías de estudio).",
+        "beneficios": [
+          "Todo lo anterior",
+          "Logotipo en gafetes, placas o material del rubro patrocinado",
+          "Logotipo en el backdrop de ceremonias y en las piezas de redes",
+          "Reconocimiento firmado por ESMUN y la PrepaTec Esmeralda"
+        ]
+      },
+      {
+        "nombre": "Patrocinador principal",
+        "desc": "Hace posible el modelo completo.",
+        "beneficios": [
+          "Todo lo anterior",
+          "Nombre asociado a la edición en comunicados y sitio",
+          "Espacio de presencia en el campus durante los tres días",
+          "Participación en la ceremonia de inauguración",
+          "Informe de resultados con cifras de la edición"
+        ]
+      }
+    ],
+    "en_especie": [
+      "Impresión de gafetes, placas y carteles",
+      "Coffee break y comidas para delegados y mesas",
+      "Reconocimientos y premios",
+      "Transporte de delegaciones externas",
+      "Fotografía y video del modelo"
+    ],
+    "logos": []
+  },
+  "publicacion": {
+    "modo": "proximamente"
+  },
+  "temporada": {
+    "modo": "auto",
+    "manual": "independencia"
+  },
+  "formularios": {
+    "proveedor": "web3forms",
+    "access_key": "PEGAR_ACCESS_KEY_DE_WEB3FORMS"
+  },
+  "analitica": {
+    "ga4": "",
+    "cloudflare": ""
+  },
+  "nombre": "ESMUN",
+  "descriptor": "PrepaTec Esmeralda",
+  "dominio": "https://esmun.com.mx"
 }
