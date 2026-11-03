@@ -12,7 +12,7 @@ Todo el contenido vive en `src/content/`. No hace falta tocar Python ni HTML.
 | Fichas de comités (sede, colores, descripción) | `src/content/comites.json` |
 | Coaches y asesores | `src/content/staff.json` |
 | Noticias (una por archivo; cabecera entre `---` y cuerpo en Markdown) | `src/content/noticias/*.md` |
-| Temporada en el logotipo de la cabecera (hojas, pétalos, nieve, papel picado…) | `src/content/site.json` → `temporada` (`modo`: auto, manual u off) |
+| Temporada en el logotipo de la cabecera (decoración sobre el edificio y partículas) | `src/content/site.json` → `temporada` (`modo`: auto, manual u off) |
 | Fotos | `src/assets/img/real/` (fotos de mesa en `real/mesa/`) |
 | Descargas para delegados (protocolo, ejemplos, carta) | `src/content/site.json` → `descargas`; archivos en `src/assets/docs/` |
 | Patrocinios: niveles, beneficios, necesidades en especie, logotipos | `src/content/site.json` → `patrocinios` |
