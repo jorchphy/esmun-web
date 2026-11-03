@@ -1,6 +1,5 @@
 # Panel de administración de ESMUN (Sveltia CMS).
 # Cada cambio guardado aquí es un commit en GitHub; Cloudflare publica el sitio en uno o dos minutos.
-# Mientras el sitio público esté en modo «Próximamente», los cambios se ven en https://vista.esmun.com.mx
 
 backend:
   name: github
@@ -14,8 +13,8 @@ backend:
     uploadMedia: 'Sube archivo «{{path}}»'
     deleteMedia: 'Elimina archivo «{{path}}»'
 
-site_url: https://vista.esmun.com.mx
-display_url: https://vista.esmun.com.mx
+site_url: https://esmun.com.mx
+display_url: https://esmun.com.mx
 logo:
   src: /assets/logo/ESMUN_favicon_180.png
 locale: es
