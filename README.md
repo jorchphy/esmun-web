@@ -71,3 +71,18 @@ Para abrir el sitio al público: cambiar `publicacion.modo` a `completo` (o la v
 
 Cada *push* reconstruye el proyecto de su rama (`python3 src/build.py` → `_site/` → `npx wrangler deploy`). La configuración de Workers está en `wrangler.jsonc`; el proyecto `esmun-vista` usa `npx wrangler deploy --name esmun-vista` como comando de despliegue para no pisar a `esmun-web`.
 
+## Panel de administración
+
+En **/admin/** (por ejemplo https://vista.esmun.com.mx/admin/) está Sveltia CMS. Se entra con una cuenta de GitHub que sea colaboradora del repositorio. Lo que se edita ahí:
+
+| Sección | Archivo | Qué se puede hacer |
+|---|---|---|
+| Noticias | `src/content/noticias/*.md` | Crear, editar, marcar como borrador, subir foto |
+| Comités | `src/content/comites.json` | Nivel, idioma, tópico, mesa directiva con fotos, textos, color |
+| Coaches y asesores | `src/content/staff.json` | Nombre, rol, descripción, foto |
+| Sitio y ajustes | `src/content/site.json` | Textos del inicio, cifras, línea de tiempo, descargas, patrocinios, interruptor de publicación, temporada del logotipo, clave de formularios |
+
+Cada guardado es un commit en `main`; Cloudflare reconstruye en uno o dos minutos. Las fotos subidas van a `src/assets/img/real/` (mesas en `real/mesa/`, logotipos en `real/patrocinadores/`) y los PDF a `src/assets/docs/`.
+
+Inicio de sesión: el panel usa el Worker `sveltia-cms-auth` de la misma cuenta de Cloudflare (app OAuth de GitHub). Para dar acceso a alguien: GitHub → repositorio → Settings → Collaborators → Add people, con permiso *Write*.
+

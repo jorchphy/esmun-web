@@ -65,7 +65,9 @@ def build():
     (OUT / '404.html').write_text(h404, encoding='utf-8')
 
     # robots, sitemap, manifest
-    (OUT / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nSitemap: {DOMAIN}/sitemap.xml\n', encoding='utf-8')
+    # panel de administración (Sveltia CMS)
+    shutil.copytree(SRC / 'admin', OUT / 'admin')
+    (OUT / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nDisallow: /admin/\nSitemap: {DOMAIN}/sitemap.xml\n', encoding='utf-8')
     pages = ['/', '/noticias/'] + ['/noticias/' + n[5] + '.html' for n in B.C['noticias']]
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{DOMAIN}{p}</loc><changefreq>{"weekly" if p=="/" else "monthly"}</changefreq></url>\n' for p in pages) + '</urlset>\n'
     (OUT / 'sitemap.xml').write_text(sm, encoding='utf-8')

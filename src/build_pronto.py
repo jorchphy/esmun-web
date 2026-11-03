@@ -93,7 +93,9 @@ def build():
     h404 = page().replace('<h1 class="display">Toma la<br>palabra.</h1>', '<h1 class="display">Sin<br>quórum.</h1>').replace('<p class="estado"><i></i> Nuevo sitio en construcción</p>', '<p class="estado"><i></i> Error 404 · esta página no existe</p>')
     h404 = h404.replace('<title>ESMUN · Modelo de Naciones Unidas PrepaTec Esmeralda</title>', '<title>Página no encontrada · ESMUN</title>').replace('<head>', '<head><meta name="robots" content="noindex">', 1)
     (OUT / '404.html').write_text(h404, encoding='utf-8')
-    (OUT / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nSitemap: {DOMAIN}/sitemap.xml\n', encoding='utf-8')
+    # panel de administración (Sveltia CMS)
+    shutil.copytree(SRC / 'admin', OUT / 'admin')
+    (OUT / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nDisallow: /admin/\nSitemap: {DOMAIN}/sitemap.xml\n', encoding='utf-8')
     (OUT / 'sitemap.xml').write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>{DOMAIN}/</loc><changefreq>weekly</changefreq></url>\n</urlset>\n', encoding='utf-8')
     (OUT / 'site.webmanifest').write_text(json.dumps({"name": "ESMUN · PrepaTec Esmeralda", "short_name": "ESMUN", "start_url": "/", "display": "standalone", "background_color": "#1C2030", "theme_color": "#253C82",
         "icons": [{"src": "assets/logo/ESMUN_favicon_180.png", "sizes": "180x180", "type": "image/png"}]}, ensure_ascii=False, indent=1), encoding='utf-8')

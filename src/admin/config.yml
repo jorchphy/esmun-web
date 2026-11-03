@@ -1,0 +1,222 @@
+# Panel de administración de ESMUN (Sveltia CMS).
+# Cada cambio guardado aquí es un commit en GitHub; Cloudflare publica el sitio en uno o dos minutos.
+# Mientras el sitio público esté en modo «Próximamente», los cambios se ven en https://vista.esmun.com.mx
+
+backend:
+  name: github
+  repo: jorchphy/esmun-web
+  branch: main
+  base_url: https://sveltia-cms-auth.jorch-imr.workers.dev
+  commit_messages:
+    create: 'Nuevo {{collection}}: «{{slug}}»'
+    update: 'Actualiza {{collection}}: «{{slug}}»'
+    delete: 'Elimina {{collection}}: «{{slug}}»'
+    uploadMedia: 'Sube archivo «{{path}}»'
+    deleteMedia: 'Elimina archivo «{{path}}»'
+
+site_url: https://vista.esmun.com.mx
+display_url: https://vista.esmun.com.mx
+logo:
+  src: /assets/logo/ESMUN_favicon_180.png
+locale: es
+
+media_folder: src/assets/img/real
+public_folder: real
+media_libraries:
+  default:
+    config:
+      slugify_filename: true
+      max_file_size: 20000000
+      transformations:
+        raster_image: { format: webp, quality: 85, width: 2400, height: 2400 }
+
+collections:
+
+  # ------------------------------------------------------------------ NOTICIAS
+  - name: noticias
+    label: Noticias
+    label_singular: Noticia
+    description: Una noticia por entrada. Las tres más recientes aparecen en el inicio; todas, en /noticias/.
+    folder: src/content/noticias
+    extension: md
+    format: yaml-frontmatter
+    create: true
+    slug: '{{slug}}'
+    identifier_field: titulo
+    summary: '{{fecha}} · {{titulo}}'
+    sortable_fields: [fecha, titulo, etiqueta]
+    fields:
+      - { label: Título, name: titulo, widget: string, hint: 'Una línea, con la información principal. Ej. «MUNMX Esmeralda 2027 ya tiene fechas: 11, 12 y 13 de marzo».' }
+      - { label: Fecha, name: fecha, widget: datetime, format: 'YYYY-MM-DD', time_format: false }
+      - { label: Etiqueta, name: etiqueta, widget: select, options: [MUNMX 2027, Convocatoria, Reconocimiento, Identidad, Historia, Equipo, Comités, Patrocinios] }
+      - { label: Resumen, name: resumen, widget: text, hint: 'Dos líneas. Es lo que se ve en la tarjeta de la noticia y en redes.' }
+      - { label: Foto, name: foto, widget: image, hint: 'Horizontal, mínimo 1600 px de ancho. Se ajusta sola al subirla.' }
+      - { label: Descripción de la foto (accesibilidad), name: alt, widget: string, hint: 'Qué se ve en la imagen, para quien no puede verla.' }
+      - { label: Pie de foto, name: pie, widget: string, required: false, hint: 'Incluye el crédito: «Foto: ESMUN» o «Foto: Conecta Tec».' }
+      - { label: Borrador (no publicar aún), name: borrador, widget: boolean, default: false, required: false }
+      - { label: Texto, name: body, widget: markdown, hint: 'Párrafos cortos. Usa «Título 2» para subtítulos y listas con viñetas si hace falta.' }
+
+  # ------------------------------------------------------------------ COMITÉS
+  - name: comites
+    label: Comités
+    files:
+      - name: lista
+        label: Comités de MUNMX 2027
+        file: src/content/comites.json
+        description: El orden de la lista es el orden en la página. Mesa, nivel y tópico se completan conforme se confirman.
+        fields:
+          - label: Comités
+            name: comites
+            widget: list
+            root: true
+            summary: '{{fields.sigla}} · {{fields.nombre}} · {{fields.tema}}'
+            fields:
+              - { label: Sigla, name: sigla, widget: string, hint: 'Como se muestra en grande: AGNU, SC, UNICEF, UN WOMEN, ILC, OTAN, FMI, SENADO.' }
+              - { label: Nombre, name: nombre, widget: string }
+              - { label: Nivel, name: nivel, widget: select, options: [Por confirmar, Principiante, Intermedio, Experto], default: Por confirmar }
+              - { label: Idioma, name: idioma, widget: select, options: [Español, Inglés, Español e inglés], default: Inglés }
+              - { label: Tópico 2027, name: tema, widget: string, default: Por confirmar, hint: 'Escribe «Por confirmar» mientras no se anuncie.' }
+              - label: Mesa directiva
+                name: mesa
+                widget: list
+                required: false
+                summary: '{{fields.cargo}}: {{fields.nombre}}'
+                hint: 'Vacío = «Nombres, cargos y fotos se publican con la convocatoria».'
+                fields:
+                  - { label: Nombre, name: nombre, widget: string }
+                  - { label: Cargo, name: cargo, widget: select, options: [Presidente, Presidenta, Vicepresidente, Vicepresidenta, Moderador, Moderadora, Secretario, Secretaria, Oficial de conferencia] }
+                  - { label: Foto, name: foto, widget: image, required: false, media_folder: src/assets/img/real/mesa, public_folder: real/mesa, hint: 'Cuadrada (se recorta en círculo). Hace falta la autorización de imagen firmada.' }
+              - { label: Qué es, name: que, widget: text, hint: 'Un párrafo: qué es el órgano en el mundo real.' }
+              - { label: De qué trata, name: trata, widget: text, hint: 'Un párrafo: los temas que debate.' }
+              - { label: Facultades, name: facultades, widget: text, hint: 'Un párrafo: qué puede decidir y qué no.' }
+              - { label: Sede real, name: sede, widget: string, hint: 'Ciudad: Nueva York, Ginebra, Bruselas, Washington, Ciudad de México…' }
+              - { label: Punto del globo, name: foco, widget: select, options: ['Nueva York · ONU', Ginebra, 'Viena · OIEA', 'Bruselas · OTAN', Washington, 'Ciudad de México · Senado', Nairobi, Tokio, Buenos Aires, Nueva Delhi], default: 'Nueva York · ONU', hint: 'Hacia dónde gira el globo al llegar a este comité.' }
+              - { label: Color del panel, name: color, widget: color, allowInput: true, hint: 'Colores de la identidad: #2E7D5B verde, #8A1C2B vino, #5B6EA6 lila, #6B3D7A ciruela, #2F5D6E pizarra, #3E3E46 carbón, #1B477A azul emblema, #C8962E oro.' }
+              - { label: Panel claro (texto oscuro), name: claro, widget: boolean, default: false, hint: 'Actívalo solo con colores claros como el oro.' }
+              - label: Delegaciones (opcional)
+                name: delegaciones
+                widget: list
+                required: false
+                summary: '{{fields.pais}} · {{fields.escuela}}'
+                fields:
+                  - { label: País, name: pais, widget: string }
+                  - { label: Escuela, name: escuela, widget: string, required: false }
+
+  # ------------------------------------------------------------------ COACHES Y ASESORES
+  - name: equipo
+    label: Coaches y asesores
+    files:
+      - name: staff
+        label: Coaches y asesores
+        file: src/content/staff.json
+        fields:
+          - label: Personas
+            name: personas
+            widget: list
+            root: true
+            summary: '{{fields.nombre}} · {{fields.rol}}'
+            fields:
+              - { label: Nombre, name: nombre, widget: string }
+              - { label: Rol, name: rol, widget: string, hint: 'Coach de ESMUN, Advisor de ESMUN…' }
+              - { label: Descripción, name: desc, widget: text, hint: 'Una o dos líneas sobre qué hace en el grupo.' }
+              - { label: Foto, name: foto, widget: image, required: false, hint: 'Cuadrada; se recorta en círculo. Vacío = iniciales.' }
+
+  # ------------------------------------------------------------------ SITIO Y AJUSTES
+  - name: sitio
+    label: Sitio y ajustes
+    files:
+      - name: ajustes
+        label: Textos, descargas, patrocinios y ajustes
+        file: src/content/site.json
+        fields:
+          - { label: Frase principal, name: claim, widget: string, hint: 'La del inicio: «Toma la palabra.»' }
+          - { label: Tagline, name: tagline, widget: string }
+          - { label: Presentación (inicio), name: intro, widget: text }
+          - { label: Quiénes somos (inicio), name: intro_quienes, widget: text }
+          - { label: Ciudad, name: ciudad, widget: string }
+          - { label: Correo de contacto, name: mail, widget: string }
+          - { label: Instagram (usuario), name: ig, widget: string, hint: 'Con arroba: @esmunmx' }
+          - { label: Instagram (enlace), name: ig_url, widget: string }
+          - { label: Enlace en mymun, name: mymun, widget: string }
+          - label: Cifras del inicio
+            name: stats
+            widget: list
+            summary: '{{fields.cifra}} · {{fields.titulo}}'
+            fields:
+              - { label: Cifra, name: cifra, widget: string }
+              - { label: Título, name: titulo, widget: string }
+              - { label: Texto, name: texto, widget: string }
+          - label: Qué hacemos
+            name: que
+            widget: list
+            summary: '{{fields.titulo}}'
+            fields:
+              - { label: Título, name: titulo, widget: string }
+              - { label: Texto, name: texto, widget: text }
+          - label: Línea de tiempo
+            name: timeline
+            widget: list
+            summary: '{{fields.anio}} · {{fields.texto}}'
+            fields:
+              - { label: Año, name: anio, widget: string }
+              - { label: Texto, name: texto, widget: string }
+          - label: Descargas (página Delegados)
+            name: descargas
+            widget: list
+            summary: '{{fields.titulo}}'
+            fields:
+              - { label: Título, name: titulo, widget: string }
+              - { label: Descripción, name: desc, widget: text }
+              - { label: Archivo PDF, name: archivo, widget: file, required: false, media_folder: src/assets/docs, public_folder: docs }
+              - { label: Versión editable (Word), name: editable, widget: file, required: false, media_folder: src/assets/docs, public_folder: docs }
+              - { label: Disponible para descargar, name: disponible, widget: boolean, default: false, hint: 'Apagado = la tarjeta dice «Próximamente» con la nota de abajo.' }
+              - { label: Nota mientras no esté disponible, name: nota, widget: string, required: false, hint: 'Ej. «Se publica con la convocatoria».' }
+          - label: Patrocinios
+            name: patrocinios
+            widget: object
+            fields:
+              - { label: Asunto del correo de contacto, name: contacto_asunto, widget: string }
+              - label: Niveles
+                name: niveles
+                widget: list
+                summary: '{{fields.nombre}}'
+                fields:
+                  - { label: Nombre, name: nombre, widget: string }
+                  - { label: Descripción, name: desc, widget: string }
+                  - { label: Beneficios, name: beneficios, widget: list, field: { label: Beneficio, name: beneficio, widget: string } }
+              - { label: Apoyos en especie, name: en_especie, widget: list, field: { label: Apoyo, name: apoyo, widget: string } }
+              - label: Logotipos de patrocinadores 2027
+                name: logos
+                widget: list
+                required: false
+                summary: '{{fields.nombre}}'
+                fields:
+                  - { label: Nombre, name: nombre, widget: string }
+                  - { label: Logotipo, name: logo, widget: image, media_folder: src/assets/img/real/patrocinadores, public_folder: real/patrocinadores, hint: 'PNG o SVG con fondo transparente; se muestra en blanco sobre azul.' }
+          - label: Publicación
+            name: publicacion
+            widget: object
+            hint: 'Interruptor del sitio público (esmun.com.mx).'
+            fields:
+              - { label: Modo, name: modo, widget: select, options: [{ label: 'Próximamente (solo la portada)', value: proximamente }, { label: 'Sitio completo', value: completo }], default: proximamente }
+          - label: Temporada en el logotipo
+            name: temporada
+            widget: object
+            fields:
+              - { label: Modo, name: modo, widget: select, options: [{ label: 'Automático por fecha', value: auto }, { label: 'Fija (la de abajo)', value: manual }, { label: 'Apagado', value: off }], default: auto }
+              - { label: Temporada fija, name: manual, widget: select, options: [otono, muertos, onu, independencia, bandera, invierno, navidad, anonuevo, primavera, munmx, mujer, naranja, bosques, ambiente, tierra, agua, oceanos, juventud, infancia, paz, ddhh], default: otono }
+          - label: Formularios
+            name: formularios
+            widget: object
+            fields:
+              - { label: Proveedor, name: proveedor, widget: select, options: [web3forms, formspree], default: web3forms }
+              - { label: Clave de acceso (Web3Forms), name: access_key, widget: string, hint: 'Llega por correo al crearla en web3forms.com con esmunze@outlook.com.' }
+          - label: Analítica
+            name: analitica
+            widget: object
+            fields:
+              - { label: ID de Google Analytics 4, name: ga4, widget: string, required: false, hint: 'G-XXXXXXXX. Vacío = sin GA4. Cloudflare Web Analytics ya está activa sin código.' }
+              - { label: Token de Cloudflare Web Analytics, name: cloudflare, widget: string, required: false, hint: 'Solo si se usa la inserción manual; con la automática va vacío.' }
+          - { label: Nombre del grupo, name: nombre, widget: string }
+          - { label: Descriptor, name: descriptor, widget: string }
+          - { label: Dominio, name: dominio, widget: string, hint: 'https://esmun.com.mx' }

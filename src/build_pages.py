@@ -6,7 +6,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import build_sites as B
 import build_p6 as P6
 from build_sites import C, esmun_logo_svg
-from content import load_json
+from content import load_json, comites_dict
 
 OUT = pathlib.Path(__file__).resolve().parent.parent / '_site'
 DOMAIN = B.C.get('dominio', 'https://esmun.github.io').rstrip('/')   # se cambia en content/site.json
@@ -107,13 +107,14 @@ STAFF = [
 ]
 
 STAFF = load_json(pathlib.Path(__file__).resolve().parent/'content'/'staff.json', STAFF)
-COM = load_json(pathlib.Path(__file__).resolve().parent/'content'/'comites.json', COM)
+COM = comites_dict(pathlib.Path(__file__).resolve().parent/'content'/'comites.json') or COM
 
 def staff_cards():
     out=''
     for s in STAFF:
         ini=''.join(w[0] for w in s['nombre'].split()[:2])
-        av=f'<img src="{s["foto"]}" alt="">' if s.get('foto') else f'<span class="ini">{ini}</span>'
+        foto=s.get('foto'); src=foto if (not foto or foto.startswith('http') or foto.startswith('../')) else f'../assets/img/{foto}'
+        av=f'<img src="{src}" alt="">' if foto else f'<span class="ini">{ini}</span>'
         out+=f'<div class="staff reveal"><div class="av">{av}</div><h3>{s["nombre"]}</h3><b>{s["rol"]}</b><p>{s["desc"]}</p></div>'
     return out
 
