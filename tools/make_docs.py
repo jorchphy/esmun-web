@@ -24,22 +24,19 @@ CSS = f"""
 @font-face{{font-family:Montserrat;font-weight:400;src:{font('montserrat-400.woff2')}}}
 @font-face{{font-family:Montserrat;font-weight:600;src:{font('montserrat-600.woff2')}}}
 @font-face{{font-family:Montserrat;font-weight:700;src:{font('montserrat-700.woff2')}}}
-@page{{size:Letter;margin:0}}
-body{{margin:0;font:11pt/1.5 Montserrat,sans-serif;color:{TINTA}}}
-.page{{width:216mm;min-height:279mm;padding:18mm 22mm 24mm;box-sizing:border-box;position:relative;page-break-after:always}}
-.head{{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid {AZUL};padding-bottom:6mm;margin-bottom:9mm}}
-.head img{{height:16mm}} .head .r{{text-align:right;font-size:8.5pt;letter-spacing:.14em;text-transform:uppercase;color:{GRIS};line-height:1.5}}
-.foot{{position:absolute;left:22mm;right:22mm;bottom:12mm;display:flex;justify-content:space-between;font-size:8pt;color:{GRIS};letter-spacing:.06em;border-top:1px solid #DADCE5;padding-top:3mm}}
-h1{{font:400 30pt/1 'League Gothic';text-transform:uppercase;margin:0 0 2mm;color:{TINTA}}}
-h2{{font:700 10pt/1.4 Montserrat;letter-spacing:.14em;text-transform:uppercase;color:{AZUL};margin:7mm 0 2mm}}
-.meta{{display:grid;grid-template-columns:auto 1fr;gap:1mm 6mm;font-size:10pt;margin:0 0 4mm}} .meta b{{font-size:8.5pt;letter-spacing:.12em;text-transform:uppercase;color:{GRIS};padding-top:1pt}}
-p{{margin:0 0 3mm;text-align:justify}} .tag{{display:inline-block;background:{AZUL};color:#fff;font-size:8pt;letter-spacing:.14em;text-transform:uppercase;padding:2px 7px;border-radius:2px;margin-bottom:5mm}}
-ol.op{{padding-left:7mm}} ol.op li{{margin-bottom:2mm}} .pre p{{margin-bottom:2mm}} em{{font-style:italic}}
-.note{{font-size:8.5pt;color:{GRIS};border-left:3px solid #C8962E;padding-left:4mm;margin-top:6mm}}
+@page{{size:Letter}}
+body{{margin:0;font:10pt/1.45 Montserrat,sans-serif;color:{TINTA}}}
+h1{{font:400 26pt/1 'League Gothic';text-transform:uppercase;margin:0 0 2.5mm;color:{TINTA}}}
+h2{{font:700 8.5pt/1.4 Montserrat;letter-spacing:.14em;text-transform:uppercase;color:{AZUL};margin:4.5mm 0 1.2mm}}
+.meta{{display:grid;grid-template-columns:auto 1fr;gap:.8mm 6mm;font-size:9.5pt;margin:0 0 2mm;padding-bottom:3mm;border-bottom:1px solid #DADCE5}} .meta b{{font-size:8pt;letter-spacing:.12em;text-transform:uppercase;color:{GRIS};padding-top:1pt}}
+p{{margin:0 0 2.5mm;text-align:left}} .body{{padding:0}} .tag{{display:inline-block;background:{AZUL};color:#fff;font-size:7.5pt;letter-spacing:.14em;text-transform:uppercase;padding:2px 7px;border-radius:2px;margin-bottom:4mm}}
+ol.op{{padding-left:6mm;margin:2mm 0 0}} ol.op li{{margin-bottom:1.6mm;padding-left:1mm}} .pre p{{margin-bottom:1.6mm}} em{{font-style:italic}}
+.note{{font-size:8pt;line-height:1.4;color:{GRIS};border-left:3px solid #C8962E;padding:.5mm 0 .5mm 4mm;margin:0 0 4mm}}
+.sig{{margin-top:10mm;display:grid;grid-template-columns:1fr 1fr;gap:10mm}} .sig b{{display:block}} .sig span{{font-size:8pt;color:{GRIS};letter-spacing:.1em;text-transform:uppercase}}
 """
 
 def page(title_block, body, foot_l='MUNMX Esmeralda 2027 · 11, 12 y 13 de marzo · PrepaTec Esmeralda', foot_r='esmun.com.mx · @esmunmx'):
-    return f"""<div class="page"><div class="head"><img src="data:image/png;base64,{b64(COFIRMA)}" alt="ESMUN · MUNMX Esmeralda 2027"><div class="r">Modelo de Naciones Unidas<br>PrepaTec Esmeralda · 2027</div></div>{title_block}{body}<div class="foot"><span>{foot_l}</span><span>{foot_r}</span></div></div>"""
+    return f"""<div class="body">{title_block}{body}</div>"""
 
 # ---------------------------------------------------------------- contenido
 PP = dict(
@@ -70,17 +67,17 @@ RES = dict(
 def html_pp():
     meta = f"""<div class="meta"><b>Comité</b><span>{PP['comite']}</span><b>Delegación</b><span>{PP['pais']}</span><b>Delegado</b><span>{PP['delegado']} · {PP['escuela']}</span><b>Tópico</b><span>{PP['topico']}</span></div>"""
     body = ''.join(f'<h2>{h}</h2><p>{t}</p>' for h, t in PP['secciones'])
-    body += '<div class="note"><b>Ejemplo.</b> Un papel de posición ocupa una página: antecedentes del tema, postura oficial del país, lo que ya ha hecho y lo que propone. Se escribe en tercera persona ("la delegación de…"), con datos verificables y sin opiniones personales. Se entrega antes de la primera sesión.</div>'
-    return page('<span class="tag">Ejemplo</span><h1>Papel de posición</h1>' + meta, body)
+    note = '<div class="note"><b>Cómo se usa este ejemplo.</b> Un papel de posición ocupa una página: antecedentes del tema, postura oficial del país, lo que ya ha hecho y lo que propone. Se escribe en tercera persona ("la delegación de…"), con datos verificables y sin opiniones personales, y se entrega antes de la primera sesión.</div>'
+    return page('<span class="tag">Ejemplo</span><h1>Papel de posición</h1>' + note + meta, body)
 
 def html_res():
     meta = f"""<div class="meta"><b>Comité</b><span>{RES['comite']}</span><b>Tópico</b><span>{RES['topico']}</span><b>Patrocinadores</b><span>{RES['patrocinadores']}</span><b>Firmantes</b><span>{RES['firmantes']}</span></div>"""
     body = '<p><b>La Asamblea General,</b></p><div class="pre">' + ''.join(f'<p>{x}</p>' for x in RES['pre']) + '</div><ol class="op">' + ''.join(f'<li>{x}</li>' for x in RES['op']) + '</ol>'
-    body += '<div class="note"><b>Ejemplo.</b> Una resolución tiene dos partes. Las cláusulas preambulares (en cursiva, terminan en coma) explican por qué se actúa; las operativas (numeradas, terminan en punto y coma, la última en punto) dicen qué se hace. Los patrocinadores la redactan; los firmantes solo piden que se debata. Se presenta a la mesa para su aprobación antes de leerse en el pleno.</div>'
-    return page('<span class="tag">Ejemplo</span><h1>Proyecto de resolución</h1>' + meta, body)
+    note = '<div class="note"><b>Cómo se usa este ejemplo.</b> Una resolución tiene dos partes. Las cláusulas preambulares (en cursiva, terminan en coma) explican por qué se actúa; las operativas (numeradas, terminan en punto y coma y la última en punto) dicen qué se hace. Los patrocinadores la redactan; los firmantes solo piden que se debata. Se entrega a la mesa antes de leerse en el pleno.</div>'
+    return page('<span class="tag">Ejemplo</span><h1>Proyecto de resolución</h1>' + note + meta, body)
 
 def html_carta():
-    body = '<p>Estimadas y estimados delegados:</p><p>[Texto de la carta de bienvenida de la Presidencia y la Vicepresidencia. Se sustituye este párrafo por el texto que envíe la mesa.]</p><p>[Segundo párrafo.]</p><p style="margin-top:10mm">Atentamente,</p><p style="margin-top:12mm"><b>Nombre Apellido</b><br><span style="font-size:9pt;color:#5B6075;letter-spacing:.1em;text-transform:uppercase">Presidencia · MUNMX Esmeralda 2027</span></p><p style="margin-top:8mm"><b>Nombre Apellido</b><br><span style="font-size:9pt;color:#5B6075;letter-spacing:.1em;text-transform:uppercase">Vicepresidencia · MUNMX Esmeralda 2027</span></p>'
+    body = '<p>Estimadas y estimados delegados:</p><p>[Texto de la carta de bienvenida de la Presidencia y la Vicepresidencia. Se sustituye este párrafo por el texto que envíe la mesa.]</p><p>[Segundo párrafo.]</p><p style="margin-top:8mm">Atentamente,</p><div class="sig"><div><b>Nombre Apellido</b><span>Presidencia · MUNMX Esmeralda 2027</span></div><div><b>Nombre Apellido</b><span>Vicepresidencia · MUNMX Esmeralda 2027</span></div></div>'
     return page('<h1>Carta de bienvenida</h1><p style="color:#5B6075;font-size:9.5pt">Atizapán de Zaragoza, Estado de México, a [día] de [mes] de 2027</p>', body)
 
 def render_pdf(html_, out):
@@ -88,7 +85,9 @@ def render_pdf(html_, out):
     tmp = OUT / (out.stem + '.html'); tmp.write_text(doc, encoding='utf-8')
     with sync_playwright() as p:
         b = p.chromium.launch(); pg = b.new_page(); pg.goto(tmp.as_uri()); pg.wait_for_timeout(600)
-        pg.pdf(path=str(out), format='Letter', print_background=True, margin={'top': '0', 'bottom': '0', 'left': '0', 'right': '0'}); b.close()
+        header = f'<div style="width:100%;margin:0 20mm;font-family:Helvetica,Arial,sans-serif;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1.5px solid {AZUL};padding-bottom:3.5mm"><img src="data:image/png;base64,{b64(COFIRMA)}" style="height:12mm"><div style="text-align:right;font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:{GRIS};line-height:1.5">Modelo de Naciones Unidas<br>PrepaTec Esmeralda · 2027</div></div>'
+        footer = f'<div style="width:100%;margin:0 20mm;font-family:Helvetica,Arial,sans-serif;display:flex;justify-content:space-between;font-size:7pt;color:{GRIS};letter-spacing:.06em;border-top:1px solid #DADCE5;padding-top:2.5mm"><span>MUNMX Esmeralda 2027 · 11, 12 y 13 de marzo · PrepaTec Esmeralda</span><span>esmun.com.mx · @esmunmx · <span class="pageNumber"></span>/<span class="totalPages"></span></span></div>'
+        pg.pdf(path=str(out), format='Letter', print_background=True, display_header_footer=True, header_template=header, footer_template=footer, margin={'top': '28mm', 'bottom': '20mm', 'left': '20mm', 'right': '20mm'}); b.close()
     tmp.unlink(); print('pdf', out.name)
 
 # ---------------------------------------------------------------- DOCX
@@ -115,10 +114,10 @@ def strip(x): return x.replace('<em>', '').replace('</em>', '')
 def build_docx():
     d = docx_base('Carta de bienvenida'); d.add_paragraph('Atizapán de Zaragoza, Estado de México, a [día] de [mes] de 2027'); d.add_paragraph(); d.add_paragraph('Estimadas y estimados delegados:'); d.add_paragraph('[Texto de la carta de bienvenida de la Presidencia y la Vicepresidencia.]'); d.add_paragraph('[Segundo párrafo.]'); d.add_paragraph(); d.add_paragraph('Atentamente,'); d.add_paragraph(); p = d.add_paragraph(); p.add_run('Nombre Apellido').bold = True; d.add_paragraph('Presidencia · MUNMX Esmeralda 2027'); d.add_paragraph(); p = d.add_paragraph(); p.add_run('Nombre Apellido').bold = True; d.add_paragraph('Vicepresidencia · MUNMX Esmeralda 2027')
     d.save(OUT / 'Membrete_MUNMX_2027_carta.docx')
-    d = docx_base('Papel de posición (ejemplo)'); meta_table(d, [('Comité', PP['comite']), ('Delegación', PP['pais']), ('Delegado', f"{PP['delegado']} · {PP['escuela']}"), ('Tópico', PP['topico'])])
+    d = docx_base('Papel de posición (ejemplo)'); n = d.add_paragraph(); r = n.add_run('Cómo se usa este ejemplo. '); r.bold = True; r.font.size = Pt(8.5); r2 = n.add_run('Un papel de posición ocupa una página: antecedentes del tema, postura oficial del país, lo que ya ha hecho y lo que propone. Se escribe en tercera persona, con datos verificables y sin opiniones personales, y se entrega antes de la primera sesión.'); r2.font.size = Pt(8.5); r2.font.color.rgb = RGBColor(0x5B, 0x60, 0x75); meta_table(d, [('Comité', PP['comite']), ('Delegación', PP['pais']), ('Delegado', f"{PP['delegado']} · {PP['escuela']}"), ('Tópico', PP['topico'])])
     for h, t in PP['secciones']: h2(d, h); d.add_paragraph(t)
     d.save(OUT / 'Ejemplo_position_paper.docx')
-    d = docx_base('Proyecto de resolución (ejemplo)'); meta_table(d, [('Comité', RES['comite']), ('Tópico', RES['topico']), ('Patrocinadores', RES['patrocinadores']), ('Firmantes', RES['firmantes'])])
+    d = docx_base('Proyecto de resolución (ejemplo)'); n = d.add_paragraph(); r = n.add_run('Cómo se usa este ejemplo. '); r.bold = True; r.font.size = Pt(8.5); r2 = n.add_run('Las cláusulas preambulares (en cursiva, terminan en coma) explican por qué se actúa; las operativas (numeradas, terminan en punto y coma y la última en punto) dicen qué se hace. Los patrocinadores la redactan; los firmantes solo piden que se debata. Se entrega a la mesa antes de leerse en el pleno.'); r2.font.size = Pt(8.5); r2.font.color.rgb = RGBColor(0x5B, 0x60, 0x75); meta_table(d, [('Comité', RES['comite']), ('Tópico', RES['topico']), ('Patrocinadores', RES['patrocinadores']), ('Firmantes', RES['firmantes'])])
     p = d.add_paragraph(); p.add_run('La Asamblea General,').bold = True
     for x in RES['pre']: p = d.add_paragraph(); first, rest = x.split('</em>', 1); r = p.add_run(first.replace('<em>', '')); r.italic = True; p.add_run(rest)
     for i, x in enumerate(RES['op'], 1): p = d.add_paragraph(); p.add_run(f'{i}. '); first, rest = x.split('</em>', 1); r = p.add_run(first.replace('<em>', '')); r.italic = True; p.add_run(rest)

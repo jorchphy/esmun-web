@@ -154,7 +154,7 @@ def comites_page(prefix='../'):
 <p class="lead reveal d2">{d['txt'][0]}</p>{ficha_html(d)}{mesa_html(d)}
 </div>{'<div aria-hidden="true"></div>' if left else ''}</div></section>"""
     body += f"""<section class="tl" id="unete" data-section data-theme="paper" data-globe="contacto" data-kf="{kf(x=1.6, y=-.1, s=.82, lon=-99, dark=False, glow=0)}"><div class="wrap"><div class="content"><p class="eyebrow reveal">Y después</p><h2 class="display reveal d1" style="font-size:clamp(56px,8vw,130px)">Elige tu comité</h2><p class="lead reveal d2" style="margin-top:18px">Si nunca has participado, empieza por la Asamblea General, UNICEF o el Senado. Si ya tienes un par de modelos, prueba ONU Mujeres, el FMI o la Comisión de Derecho Internacional. El Consejo de Seguridad y la OTAN son para quien ya sabe lo que es una sesión sin receso.</p><p class="reveal d3" style="margin-top:24px;display:flex;gap:14px;flex-wrap:wrap"><a class="btn" href="{prefix}contacto/">Únete al equipo</a><a class="btn ghost" href="{prefix}munmx/">MUNMX 2027</a></p></div><div aria-hidden="true"></div></div></section></main>"""
-    return head('Comités · ESMUN PrepaTec Esmeralda', 'Los ocho comités de MUNMX Esmeralda 2027: Asamblea General, Consejo de Seguridad, UNICEF, ONU Mujeres, Comisión de Derecho Internacional, OTAN, FMI y Cámara de Senadores. Qué es, de qué trata y facultades de cada uno.', prefix, 'comites/') + body + footer(prefix) + scripts(prefix)
+    return head('Comités · ESMUN PrepaTec Esmeralda', 'Los ocho comités de MUNMX Esmeralda 2027, con qué es, de qué trata y qué facultades tiene cada uno. Sede, nivel e idioma.', prefix, 'comites/') + body + footer(prefix) + scripts(prefix)
 
 def quienes_page(prefix='../'):
     secs = [('intro', 'Quiénes somos'), ('hacemos', 'Qué hacemos'), ('coaches', 'Coaches y asesores'), ('historia', 'Historia'), ('cifras', 'Cifras')]
@@ -236,7 +236,7 @@ def delegados_page(prefix='../'):
     cards = ''
     for d in C.get('descargas', []):
         if d.get('disponible'):
-            links = f'<a class="btn" href="{prefix}assets/{d["archivo"]}" download>Descargar PDF</a>' + (f' <a class="btn ghost" href="{prefix}assets/{d["editable"]}" download>Word</a>' if d.get('editable') else '')
+            links = f'<a class="btn" href="{prefix}assets/{d["archivo"]}" download aria-label="Descargar {d["titulo"]} en PDF">Descargar PDF</a>' + (f' <a class="btn ghost" href="{prefix}assets/{d["editable"]}" download aria-label="Descargar {d["titulo"]} en Word">Word</a>' if d.get('editable') else '')
         else:
             links = f'<span class="pill">{d.get("nota", "Próximamente")}</span>'
         cards += f'<div class="dl-card reveal"><h3>{d["titulo"]}</h3><p>{d["desc"]}</p><div class="dl-actions">{links}</div></div>'
