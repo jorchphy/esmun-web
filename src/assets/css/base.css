@@ -22,6 +22,7 @@
 [data-theme="blue"]{ --bg:var(--azul); --fg:#fff; --muted:#C9D2F0; --line:rgba(255,255,255,.22); --accent:#fff;
   --lg-main:#fff; --lg-dark:var(--gris-2); --lg-light:var(--gris); --lg-win:var(--gris-2); --lg-lit:var(--gris-2); background:var(--bg); color:var(--fg) }
 
+html,body{overflow-x:hidden;overflow-x:clip}
 *{box-sizing:border-box} html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
 img,svg{display:block;max-width:100%} a{color:inherit}

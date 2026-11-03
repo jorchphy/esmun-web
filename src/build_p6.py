@@ -6,7 +6,7 @@ import build_sites as B
 from build_sites import C, head, header, footer, contact_form, news_cards, scripts, comite_list, LOGO_P, LOGO_I, A, ROOT, esmun_logo_svg
 
 CSS="""
-html{background:var(--tinta)} body{overflow-x:clip} .wrap{min-width:0}
+html{background:var(--tinta);overflow-x:hidden;overflow-x:clip} body{overflow-x:hidden;overflow-x:clip} .wrap{min-width:0}
 /* Capas: fondos de sección (opacos, por tema) → lienzo del globo (fijo, z2) → contenido (.wrap, z3) → cabecera (z50) */
 #globe{position:fixed;inset:0;z-index:2;pointer-events:none} #globe canvas{width:100%!important;height:100%!important;display:block}
 #globe.fallback{position:absolute;top:0;left:0;right:0;height:100svh;display:grid;align-items:center;justify-items:end;padding-right:4vw;overflow:hidden} #globe.fallback img{width:min(78vmin,760px);height:auto;opacity:.9} @media (max-width:900px){#globe.fallback{align-items:start;justify-items:center;padding:12vh 0 0}} #globe.webgl img{display:none} #globe.fallback~main .only-pointer{display:none}
@@ -26,7 +26,7 @@ section{min-height:100svh;display:grid;align-items:center;padding-block:clamp(72
 .hero h1{font-size:clamp(76px,13vw,220px);line-height:.8;color:#fff} .hero h1 em{font-style:normal;color:var(--oro,#FFD98A)}
 .hero .lead{color:#DCE3F7;max-width:50ch} .hero .btn{background:#fff;color:var(--azul);border-color:#fff} .hero .btn.ghost{background:transparent;color:#fff}
 .hero .legend{margin-top:34px;display:flex;gap:22px;flex-wrap:wrap;font-size:12px;color:#B9C6EE;letter-spacing:.08em} .hero .legend i{display:inline-block;width:10px;height:10px;border-radius:50%;background:#FFD98A;vertical-align:middle;margin-right:8px;box-shadow:0 0 10px #FFD98A} .hero .legend i.w{background:#B8B8BA;box-shadow:none}
-@media (max-width:900px){.hero .wrap{grid-template-columns:1fr;align-content:end;min-height:100svh;padding-bottom:40px} .hero h1{font-size:clamp(64px,19vw,140px)}}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr;align-content:end;min-height:100svh;padding-bottom:40px} .hero h1{font-size:clamp(64px,19vw,140px)} .hero .content{position:relative} .hero .content::before{content:'';position:absolute;inset:-40px -24px -30px;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 40% 60%,rgba(28,32,48,.82) 30%,rgba(28,32,48,.55) 58%,rgba(28,32,48,0) 78%)}}
 /* velo: halo del color del fondo detrás de un bloque de texto, por si el globo pasa por debajo */
 .shield{position:relative;isolation:isolate} .shield::before{content:'';position:absolute;inset:-28px -40px;z-index:-1;background:radial-gradient(ellipse at center,var(--bgc,var(--papel)) 46%,transparent 100%);opacity:.92;pointer-events:none}
 .q .wrap{display:grid;justify-items:end} .q .content{max-width:760px;width:100%} .q .lead{font-size:clamp(19px,1.8vw,26px);line-height:1.4;color:var(--fg)}

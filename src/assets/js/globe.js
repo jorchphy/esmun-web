@@ -125,10 +125,10 @@
     state.focus = focus;
     // móvil: sobre fondo claro el globo se desplaza a la derecha y se atenúa para no competir con el texto
     state.x = mob ? lerp(1.0, 0, dark) : x * xs; state.y = y + (mob ? lerp(-0.2, 0.55, dark) : 0); state.s = s * (mob ? 0.78 : 1) * (1 - 0.5 * dip);
-    state.glow = glow; state.lonTarget = lon; state.dark = dark; state.opacity = (mob ? lerp(0.22, 1, dark) : 1) * (1 - 0.65 * dip);
+    state.glow = glow; state.lonTarget = lon; state.dark = dark; state.opacity = (mob ? lerp(0.22, 0.8, dark) : 1) * (1 - 0.65 * dip);
     document.documentElement.style.setProperty('--darkT', dark.toFixed(3));
   }
-  window.addEventListener('scroll', update, { passive: true }); window.addEventListener('resize', function () { resize(); update(); }); update();
+  window.addEventListener('scroll', update, { passive: true }); window.addEventListener('resize', function () { resize(); update(); }); if (window.visualViewport) { window.visualViewport.addEventListener('resize', function () { resize(); update(); }); } update();
 
   function resize() { var w = window.innerWidth, h = window.innerHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); U.uPR.value = renderer.getPixelRatio(); }
   resize();
