@@ -21,9 +21,9 @@
    "Convocados en ESMUN 2024, con seis comités en español e inglés."
   ],
   [
-   "11",
+   "8",
    "Comités",
-   "En MUNMX Esmeralda 2026, del Consejo de Seguridad a Star Wars Rebellion."
+   "En MUNMX Esmeralda 2027: de la Asamblea General al Senado de la República."
   ],
   [
    "2",
@@ -77,40 +77,52 @@
  ],
  "comites": [
   [
-   "CS",
-   "Consejo de Seguridad",
-   "Experto · Inglés",
-   "#8A1C2B"
-  ],
-  [
    "AGNU",
-   "Asamblea General",
-   "Principiante · Español",
+   "General Assembly",
+   "Nivel por confirmar · Inglés",
    "#2E7D5B"
   ],
   [
-   "IAEA",
-   "Organismo Internacional de Energía Atómica",
-   "Intermedio · Inglés",
-   "#C8962E"
+   "SC",
+   "Security Council",
+   "Nivel por confirmar · Inglés",
+   "#8A1C2B"
   ],
   [
    "UNICEF",
-   "Fondo de las Naciones Unidas para la Infancia",
-   "Principiante · Inglés",
+   "UNICEF",
+   "Nivel por confirmar · Inglés",
    "#5B6EA6"
   ],
   [
-   "OEA",
-   "Organización de los Estados Americanos",
-   "Intermedio · Español",
-   "#B4452E"
+   "UN WOMEN",
+   "UN Women",
+   "Nivel por confirmar · Inglés",
+   "#6B3D7A"
+  ],
+  [
+   "ILC",
+   "International Law Commission",
+   "Nivel por confirmar · Inglés",
+   "#2F5D6E"
   ],
   [
    "OTAN",
    "Organización del Tratado del Atlántico Norte",
-   "Experto · Inglés",
+   "Nivel por confirmar · Español",
    "#3E3E46"
+  ],
+  [
+   "FMI",
+   "Fondo Monetario Internacional",
+   "Nivel por confirmar · Español",
+   "#1B477A"
+  ],
+  [
+   "SENADO",
+   "Cámara de Senadores",
+   "Nivel por confirmar · Español",
+   "#C8962E"
   ]
  ],
  "dominio": "https://esmun.com.mx",
@@ -123,5 +135,78 @@
   "ga4": "",
   "cloudflare": "",
   "_ayuda": "ga4: ID de medición G-XXXXXXXXXX. cloudflare: token de Cloudflare Web Analytics (sin cookies). Vacío = sin analítica."
+ },
+ "descargas": [
+  {
+   "titulo": "Protocolo del modelo",
+   "desc": "Reglas de procedimiento, formato de debate, mociones y puntos. El documento oficial de MUNMX Esmeralda 2027.",
+   "archivo": "docs/Protocolo_MUNMX_2027.pdf",
+   "disponible": false,
+   "nota": "Se publica con la convocatoria"
+  },
+  {
+   "titulo": "Ejemplo de papel de posición",
+   "desc": "Una página: antecedentes, postura del país, acciones previas y propuestas. Con el formato que se pide en el modelo.",
+   "archivo": "docs/Ejemplo_position_paper.pdf",
+   "editable": "docs/Ejemplo_position_paper.docx",
+   "disponible": true
+  },
+  {
+   "titulo": "Ejemplo de proyecto de resolución",
+   "desc": "Cláusulas preambulares y operativas, patrocinadores y firmantes, con la redacción y puntuación correctas.",
+   "archivo": "docs/Ejemplo_resolucion.pdf",
+   "editable": "docs/Ejemplo_resolucion.docx",
+   "disponible": true
+  },
+  {
+   "titulo": "Carta de bienvenida de la mesa",
+   "desc": "Carta de la Presidencia y la Vicepresidencia a las y los delegados de MUNMX Esmeralda 2027.",
+   "archivo": "docs/Carta_bienvenida_MUNMX_2027.pdf",
+   "disponible": false,
+   "nota": "En preparación"
+  }
+ ],
+ "patrocinios": {
+  "contacto_asunto": "Patrocinio MUNMX Esmeralda 2027",
+  "niveles": [
+   {
+    "nombre": "Aliado",
+    "desc": "Apoyo en especie o aportación puntual.",
+    "beneficios": [
+     "Logotipo en la página de patrocinios del sitio",
+     "Mención en redes sociales de ESMUN",
+     "Agradecimiento en la ceremonia de clausura"
+    ]
+   },
+   {
+    "nombre": "Patrocinador",
+    "desc": "Cubre un comité o un rubro de la conferencia (gafetes, placas, coffee break, guías de estudio).",
+    "beneficios": [
+     "Todo lo anterior",
+     "Logotipo en gafetes, placas o material del rubro patrocinado",
+     "Logotipo en el backdrop de ceremonias y en las piezas de redes",
+     "Reconocimiento firmado por ESMUN y la PrepaTec Esmeralda"
+    ]
+   },
+   {
+    "nombre": "Patrocinador principal",
+    "desc": "Hace posible la conferencia completa.",
+    "beneficios": [
+     "Todo lo anterior",
+     "Nombre asociado a la edición en comunicados y sitio",
+     "Espacio de presencia en el campus durante los tres días",
+     "Participación en la ceremonia de inauguración",
+     "Informe de resultados con cifras de la edición"
+    ]
+   }
+  ],
+  "en_especie": [
+   "Impresión de gafetes, placas y carteles",
+   "Coffee break y comidas para delegados y mesas",
+   "Reconocimientos y premios",
+   "Transporte de delegaciones externas",
+   "Fotografía y video de la conferencia"
+  ],
+  "logos": []
  }
 }

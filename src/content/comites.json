@@ -1,18 +1,4 @@
 {
- "CS": {
-  "sede": "Nueva York",
-  "focus": "Nueva York · ONU",
-  "lon": -74,
-  "bg": "#8A1C2B",
-  "dots": "#D3A9AE",
-  "txt": [
-   "El órgano de la ONU responsable de la paz y la seguridad internacionales. Lo forman quince Estados: cinco permanentes con derecho de veto (China, Estados Unidos, Francia, Reino Unido y Rusia) y diez electos por dos años.",
-   "Sus resoluciones son vinculantes para todos los miembros de la ONU, así que cada palabra se negocia. En el modelo es el comité de nivel experto, con pocas delegaciones y crisis que cambian a mitad de sesión."
-  ],
-  "tema": "",
-  "mesa": [],
-  "delegaciones": []
- },
  "AGNU": {
   "sede": "Nueva York",
   "focus": "Nueva York · ONU",
@@ -20,25 +6,26 @@
   "bg": "#2C7457",
   "dots": "#B0CEC1",
   "txt": [
-   "La asamblea donde están representados los 193 Estados miembros de la ONU, cada uno con un voto. Debate cualquier asunto de la Carta, aprueba el presupuesto y elige a los miembros no permanentes del Consejo de Seguridad.",
-   "Sus resoluciones son recomendaciones, no obligaciones, y por eso el trabajo es sumar mayorías. Es el comité por el que casi todos empiezan: muchas delegaciones, procedimiento clásico, en español."
+   "La Asamblea General es el órgano deliberativo principal de la ONU: los 193 Estados miembros, cada uno con un voto. Se reúne cada año en Nueva York desde septiembre.",
+   "De casi todo: paz y seguridad cuando el Consejo está bloqueado, desarrollo, derechos humanos, presupuesto de la organización y elección de los miembros no permanentes del Consejo de Seguridad."
   ],
-  "tema": "",
+  "facultades": "Aprueba resoluciones por mayoría simple (dos tercios en asuntos importantes). Sus resoluciones son recomendaciones, no obligaciones, salvo las presupuestarias. Puede convocar sesiones especiales de emergencia. En el modelo sigue el procedimiento parlamentario clásico y es el comité por el que casi todos empiezan.",
+  "tema": "Por confirmar",
   "mesa": [],
   "delegaciones": []
  },
- "IAEA": {
-  "sede": "Viena",
-  "focus": "Viena · OIEA",
-  "lon": 16,
-  "bg": "#C8962E",
-  "dots": "#3E2F10",
-  "light": true,
+ "SC": {
+  "sede": "Nueva York",
+  "focus": "Nueva York · ONU",
+  "lon": -74,
+  "bg": "#8A1C2B",
+  "dots": "#D3A9AE",
   "txt": [
-   "El Organismo Internacional de Energía Atómica promueve el uso pacífico de la energía nuclear y verifica, con inspecciones y salvaguardias, que los programas nucleares no se desvíen a fines militares.",
-   "Un comité técnico: se debate con informes, datos y tratados (el TNP ante todo). Nivel intermedio, en inglés."
+   "El Consejo de Seguridad es el órgano responsable de mantener la paz y la seguridad internacionales. Quince Estados: cinco permanentes con derecho de veto (China, Estados Unidos, Francia, Reino Unido y Rusia) y diez electos por dos años.",
+   "Conflictos armados, amenazas a la paz, sanciones, operaciones de mantenimiento de la paz y admisión de nuevos miembros a la ONU."
   ],
-  "tema": "",
+  "facultades": "Es el único órgano cuyas resoluciones obligan a todos los miembros de la ONU (artículo 25 de la Carta). Puede imponer sanciones, autorizar el uso de la fuerza y crear misiones de paz. Necesita nueve votos a favor sin veto de un permanente. En el modelo es el comité de mayor nivel: pocas delegaciones y crisis que cambian a mitad de sesión.",
+  "tema": "Por confirmar",
   "mesa": [],
   "delegaciones": []
  },
@@ -49,24 +36,41 @@
   "bg": "#55669A",
   "dots": "#C1C8DD",
   "txt": [
-   "El Fondo de las Naciones Unidas para la Infancia trabaja por los derechos de niñas, niños y adolescentes: salud, nutrición, educación y protección, en más de 190 países y territorios.",
-   "Un comité de programas y cooperación: aquí se discute qué se puede financiar y ejecutar, más que quién tiene razón. Nivel principiante, en inglés."
+   "El Fondo de las Naciones Unidas para la Infancia, creado en 1946, trabaja por los derechos de niñas, niños y adolescentes en más de 190 países y territorios.",
+   "Salud, nutrición, agua y saneamiento, educación, protección contra la violencia y la explotación, y respuesta a emergencias humanitarias."
   ],
-  "tema": "",
+  "facultades": "Lo dirige una Junta Ejecutiva de 36 Estados que aprueba programas y presupuesto; se financia con aportaciones voluntarias. No legisla: diseña programas de cooperación con los gobiernos. En el modelo se debate qué se puede financiar y ejecutar, más que quién tiene razón.",
+  "tema": "Por confirmar",
   "mesa": [],
   "delegaciones": []
  },
- "OEA": {
-  "sede": "Washington",
-  "focus": "Washington · OEA",
-  "lon": -77,
-  "bg": "#AC432E",
-  "dots": "#E2B8B0",
+ "UN WOMEN": {
+  "sede": "Nueva York",
+  "focus": "Nueva York · ONU",
+  "lon": -74,
+  "bg": "#6B3D7A",
+  "dots": "#D9C3E0",
   "txt": [
-   "La Organización de los Estados Americanos reúne a los 35 Estados del continente. Sus pilares son la democracia, los derechos humanos, la seguridad y el desarrollo.",
-   "Un comité regional en español: los temas son los de América Latina y el Caribe, y las alianzas se parecen mucho a las reales. Nivel intermedio."
+   "ONU Mujeres es la entidad de las Naciones Unidas para la igualdad de género y el empoderamiento de las mujeres. Nació en 2010 al fusionar cuatro oficinas anteriores de la organización.",
+   "Participación política de las mujeres, autonomía económica, fin de la violencia de género, paz y seguridad con perspectiva de género, y seguimiento de los compromisos de Beijing."
   ],
-  "tema": "",
+  "facultades": "Apoya a los Estados en la aplicación de normas internacionales, coordina el trabajo de todo el sistema de la ONU en igualdad de género y presta asistencia técnica y financiera. Sus resoluciones son recomendaciones. En el modelo, el reto es pasar del diagnóstico a medidas concretas y financiables.",
+  "tema": "Por confirmar",
+  "mesa": [],
+  "delegaciones": []
+ },
+ "ILC": {
+  "sede": "Ginebra",
+  "focus": "Ginebra",
+  "lon": 6,
+  "bg": "#2F5D6E",
+  "dots": "#BFD4DB",
+  "txt": [
+   "La Comisión de Derecho Internacional es el órgano de expertos que la Asamblea General creó en 1947 para codificar y desarrollar el derecho internacional. La forman 34 juristas electos por cinco años, que actúan a título personal, no como representantes de gobiernos.",
+   "Tratados, responsabilidad de los Estados, inmunidades, crímenes internacionales, protección de la atmósfera y del medio ambiente en conflictos armados: temas que después se convierten en convenciones."
+  ],
+  "facultades": "Elabora proyectos de artículos y comentarios que la Asamblea General puede convertir en tratados, como la Convención de Viena sobre el Derecho de los Tratados o el borrador del Estatuto de Roma. No vota resoluciones: redacta derecho. En el modelo, cada delegado es un jurista y el producto es un articulado, no una resolución.",
+  "tema": "Por confirmar",
   "mesa": [],
   "delegaciones": []
  },
@@ -77,16 +81,49 @@
   "bg": "#3E3E46",
   "dots": "#B6B6B9",
   "txt": [
-   "La Organización del Tratado del Atlántico Norte es una alianza político-militar de 32 países de Europa y Norteamérica. Su artículo 5 establece que un ataque contra uno es un ataque contra todos.",
-   "En el modelo, el Consejo del Atlántico Norte decide por consenso: nadie vota, todos tienen que estar de acuerdo. Nivel experto, en inglés."
+   "La Organización del Tratado del Atlántico Norte es la alianza político-militar de 32 países de Europa y Norteamérica, fundada en 1949.",
+   "Defensa colectiva, disuasión, ciberseguridad, operaciones de gestión de crisis y relación con países socios."
   ],
-  "tema": "",
+  "facultades": "Su artículo 5 establece que un ataque contra un aliado es un ataque contra todos. El Consejo del Atlántico Norte decide por consenso: nadie vota, todos tienen que estar de acuerdo. En el modelo, el trabajo es construir ese consenso sin perder la postura propia.",
+  "tema": "Por confirmar",
+  "mesa": [],
+  "delegaciones": []
+ },
+ "FMI": {
+  "sede": "Washington",
+  "focus": "Washington",
+  "lon": -77,
+  "bg": "#1B477A",
+  "dots": "#B8C6DC",
+  "txt": [
+   "El Fondo Monetario Internacional, creado en Bretton Woods en 1944, vela por la estabilidad del sistema monetario internacional. Lo integran 191 países.",
+   "Crisis de balanza de pagos, deuda soberana, tipos de cambio, inflación y reformas económicas de los países que piden asistencia."
+  ],
+  "facultades": "Supervisa las economías de sus miembros, presta a países en crisis con condiciones de política económica y da asistencia técnica. El poder de voto depende de la cuota de cada país, así que no todos pesan igual. En el modelo se negocian programas de rescate y sus condiciones: economía y política a la vez.",
+  "tema": "Por confirmar",
+  "mesa": [],
+  "delegaciones": []
+ },
+ "SENADO": {
+  "sede": "Ciudad de México",
+  "focus": "Ciudad de México · Senado",
+  "lon": -99,
+  "bg": "#C8962E",
+  "dots": "#3E2F10",
+  "light": true,
+  "txt": [
+   "La Cámara de Senadores es una de las dos cámaras del Congreso de la Unión. La forman 128 senadoras y senadores electos por seis años.",
+   "Además de legislar, el Senado analiza la política exterior, ratifica los tratados internacionales y aprueba nombramientos de embajadores, ministros de la Suprema Corte y otros cargos."
+  ],
+  "facultades": "Aprueba o rechaza iniciativas de ley, dictámenes y reformas constitucionales (con la Cámara de Diputados y las legislaturas estatales), ratifica tratados y puede constituirse en jurado de sentencia en juicio político. En el modelo, el procedimiento es el parlamentario mexicano: iniciativas, comisiones, dictámenes y votación en el pleno, en español.",
+  "tema": "Por confirmar",
   "mesa": [],
   "delegaciones": []
  },
  "_ayuda": {
-  "mesa": "[{\"nombre\":\"...\",\"cargo\":\"Presidente/a\"}]",
-  "delegaciones": "[{\"pais\":\"México\",\"escuela\":\"PrepaTec Esmeralda\"}]",
-  "tema": "Tema del comité para 2027"
+  "mesa": "[{\"nombre\":\"...\",\"cargo\":\"Presidente/a\",\"foto\":\"real/mesa/archivo.jpg\"}]",
+  "tema": "Tópico del comité (si es 'Por confirmar' se muestra así)",
+  "txt": "[qué es, de qué trata]",
+  "facultades": "párrafo de facultades"
  }
 }

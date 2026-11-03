@@ -64,7 +64,7 @@
 
   // ---- sedes: Atizapán (PrepaTec Esmeralda) y ciudades de los comités de referencia
   var HOME = { name: 'PrepaTec Esmeralda', lat: 19.58, lon: -99.26 };
-  var CITIES = [ { name: 'Nueva York · ONU', lat: 40.75, lon: -73.97 }, { name: 'Ginebra', lat: 46.2, lon: 6.15 }, { name: 'Viena · OIEA', lat: 48.21, lon: 16.37 }, { name: 'Bruselas · OTAN', lat: 50.85, lon: 4.35 }, { name: 'Washington · OEA', lat: 38.9, lon: -77.04 }, { name: 'Nairobi', lat: -1.29, lon: 36.82 }, { name: 'Tokio', lat: 35.68, lon: 139.69 }, { name: 'Buenos Aires', lat: -34.6, lon: -58.38 }, { name: 'Nueva Delhi', lat: 28.61, lon: 77.21 } ];
+  var CITIES = [ { name: 'Nueva York · ONU', lat: 40.75, lon: -73.97 }, { name: 'Ginebra', lat: 46.2, lon: 6.15 }, { name: 'Viena · OIEA', lat: 48.21, lon: 16.37 }, { name: 'Bruselas · OTAN', lat: 50.85, lon: 4.35 }, { name: 'Washington', lat: 38.9, lon: -77.04 }, { name: 'Ciudad de México · Senado', lat: 19.43, lon: -99.13 }, { name: 'Nairobi', lat: -1.29, lon: 36.82 }, { name: 'Tokio', lat: 35.68, lon: 139.69 }, { name: 'Buenos Aires', lat: -34.6, lon: -58.38 }, { name: 'Nueva Delhi', lat: 28.61, lon: 77.21 } ];
   var markers = new THREE.Group(); globe.add(markers);
   function marker(c, big) { var m = new THREE.Mesh(new THREE.SphereGeometry(big ? 0.022 : 0.012, 12, 12), new THREE.MeshBasicMaterial({ color: C.oro })); m.position.copy(ll(c.lat, c.lon, 1.004)); m.userData.city = c.name; markers.add(m);
     var ring = new THREE.Mesh(new THREE.RingGeometry(0.02, 0.028, 32), new THREE.MeshBasicMaterial({ color: C.oro, transparent: true, opacity: 0.7, side: THREE.DoubleSide })); ring.position.copy(m.position); ring.lookAt(new THREE.Vector3(0, 0, 0)); ring.userData.t = Math.random() * 6; markers.add(ring); return m; }

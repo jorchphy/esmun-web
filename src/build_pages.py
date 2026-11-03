@@ -13,7 +13,7 @@ DOMAIN = B.C.get('dominio', 'https://esmun.github.io').rstrip('/')   # se cambia
 SKIP = '<a class="skip" href="#main">Saltar al contenido</a>'
 
 # Navegación del sitio (rutas relativas; prefix = '' en la raíz, '../' en subpáginas)
-NAV = [('', 'Inicio'), ('quienes/', 'Quiénes somos'), ('comites/', 'Comités'), ('munmx/', 'MUNMX 2027'), ('noticias/', 'Noticias'), ('contacto/', 'Contacto')]
+NAV = [('quienes/', 'Quiénes somos'), ('munmx/', 'MUNMX 2027'), ('comites/', 'Comités'), ('delegados/', 'Delegados'), ('patrocinios/', 'Patrocinios'), ('noticias/', 'Noticias'), ('contacto/', 'Contacto')]
 
 def header(prefix, active):
     links = ''.join(f'<a href="{prefix}{h}"{" class=on aria-current=page" if h == active else ""}>{t}</a>' for h, t in NAV)
@@ -39,6 +39,8 @@ def head(title, desc, prefix, path, extra=''):
 def scripts(prefix):
     return f'<script src="{prefix}assets/js/land.js" defer></script><script src="{prefix}assets/js/esmun.js" defer></script><script src="{prefix}assets/js/globe.js" defer></script></body></html>'
 
+def slug(s): return s.lower().replace(' ', '-')
+
 def kf(**k): return html.escape(json.dumps(k), quote=True)
 
 # ---------------------------------------------------------------- CSS adicional de las subpáginas
@@ -58,6 +60,8 @@ PAGES_CSS = """
 .panel{min-height:100svh;color:#fff} .panel .sig{font-family:var(--display);text-transform:uppercase;font-size:clamp(120px,22vw,360px);line-height:.8;letter-spacing:-.01em;color:#fff;opacity:.96} .panel .nm{font-size:clamp(26px,2.6vw,40px);font-weight:600;line-height:1.15;margin:10px 0 6px} .panel .lv{font-size:12px;letter-spacing:.18em;text-transform:uppercase;opacity:.85} .panel .sede{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.9} .panel .sede i{width:10px;height:10px;border-radius:50%;background:#FFD98A;box-shadow:0 0 10px #FFD98A;display:inline-block}
 .panel .lead{color:inherit;opacity:.92;max-width:52ch;margin-top:18px} .panel .btn{border-color:currentColor;color:inherit;background:transparent} .panel.light{color:var(--tinta)} .panel.light .sig{color:var(--tinta)} .panel.light .sede i{background:var(--tinta);box-shadow:none}
 .panel .shield::before{background:radial-gradient(ellipse at center,var(--bgc) 42%,transparent 100%);opacity:.9}
+.ficha{margin-top:16px;max-width:60ch} .ficha .lv{display:block;margin-bottom:4px} .ficha p{margin:0;font-size:15px;line-height:1.5;opacity:.95}
+.mesa-grid li{grid-template-columns:56px 1fr;grid-template-rows:auto auto;column-gap:12px;align-items:center} .mesa-grid .mav{grid-row:span 2;width:56px;height:56px;border-radius:50%;overflow:hidden;background:rgba(255,255,255,.18);display:grid;place-items:center;font-family:var(--display);font-size:24px} .mesa-grid .mav img{width:100%;height:100%;object-fit:cover} .panel.light .mesa-grid .mav{background:rgba(28,32,48,.15)}
 .mesa{margin-top:22px} .mesa ul{list-style:none;margin:8px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px 18px} .mesa li{display:grid;line-height:1.3} .mesa .nm2{font-weight:600;font-size:15px} .mesa .cg{font-size:12px;opacity:.8} .mesa ul.dl{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
 .com-index{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px} .com-index a{display:inline-grid;grid-auto-flow:column;align-items:center;gap:10px;padding:8px 14px 8px 10px;border:1px solid rgba(255,255,255,.3);border-radius:999px;color:#fff;text-decoration:none;font-size:13px;background:rgba(28,32,48,.4)} .com-index a b{font-family:var(--display);font-size:24px;line-height:1;color:var(--acc);filter:brightness(1.7)}
 /* preguntas */
@@ -65,6 +69,10 @@ PAGES_CSS = """
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:32px} .cards div{background:color-mix(in srgb,var(--papel) 70%,#fff 30%);border:1px solid var(--line);padding:22px;border-radius:3px} .cards h3{font-family:var(--display);text-transform:uppercase;font-size:34px;color:var(--azul);margin:0 0 6px} .cards p{margin:0;font-size:14.5px;color:var(--muted)}
 [data-theme="dark"] .cards div{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18)} [data-theme="dark"] .cards h3{color:#fff} [data-theme="dark"] .cards p{color:#C9D2F0}
 .staff-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin-top:30px} .staff{display:grid;grid-template-columns:64px 1fr;gap:6px 16px;align-items:center;padding:18px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);border-radius:3px} .staff .av{grid-row:span 3;width:64px;height:64px;border-radius:50%;overflow:hidden;background:var(--azul);display:grid;place-items:center} .staff .av img{width:100%;height:100%;object-fit:cover} .staff .ini{font-family:var(--display);font-size:30px;color:#fff;letter-spacing:.02em} .staff h3{font-size:17px;font-weight:600;line-height:1.2;margin:0;color:#fff} .staff b{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#FFD98A} .staff p{margin:0;font-size:13.5px;color:#C9D2F0;line-height:1.5}
+.dl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:30px} .dl-card{background:color-mix(in srgb,var(--papel) 70%,#fff 30%);border:1px solid var(--line);padding:22px;border-radius:3px;display:grid;gap:10px;align-content:start} .dl-card h3{font-size:19px;font-weight:600;line-height:1.2;margin:0} .dl-card p{margin:0;font-size:14px;color:var(--muted)} .dl-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:30px} .tier{background:color-mix(in srgb,var(--papel) 70%,#fff 30%);border:1px solid var(--line);padding:22px;border-radius:3px} .tier h3{font-family:var(--display);text-transform:uppercase;font-size:38px;color:var(--azul);margin:4px 0 6px} .tier p{margin:0 0 10px;font-size:14px;color:var(--muted)} .tier ul{margin:0;padding-left:18px;font-size:14px} .tier li{margin:4px 0}
+.needs{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px 18px} .needs li{padding:12px 0;border-top:1px solid rgba(255,255,255,.2);font-size:16px}
+.logos{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:18px;align-items:center} .logos img{height:44px;width:auto;filter:brightness(0) invert(1);opacity:.9}
 .more{display:inline-block;margin-top:22px;font-weight:600;text-decoration:none;border-bottom:2px solid var(--accent);padding-bottom:2px}
 """
 
@@ -109,35 +117,44 @@ def staff_cards():
         out+=f'<div class="staff reveal"><div class="av">{av}</div><h3>{s["nombre"]}</h3><b>{s["rol"]}</b><p>{s["desc"]}</p></div>'
     return out
 
+def ficha_html(d):
+    out = ''
+    if len(d.get('txt', [])) > 1: out += f'<div class="ficha reveal d2"><b class="lv">De qué trata</b><p>{d["txt"][1]}</p></div>'
+    if d.get('facultades'): out += f'<div class="ficha reveal d3"><b class="lv">Facultades</b><p>{d["facultades"]}</p></div>'
+    tema = d.get('tema') or 'Por confirmar'
+    out += f'<div class="ficha reveal d3"><b class="lv">Tópico 2027</b><p>{tema}{"" if tema != "Por confirmar" else " · se anuncia con la convocatoria"}</p></div>'
+    return out
+
 def mesa_html(d):
     """Mesa directiva (y opcionalmente delegaciones) de un comité, si están en comites.json."""
     out = ''
     if d.get('mesa'):
-        out += '<div class="mesa reveal d3"><b class="lv">Mesa directiva</b><ul>' + ''.join(f'<li><span class="nm2">{m["nombre"]}</span><span class="cg">{m.get("cargo","")}</span></li>' for m in d['mesa']) + '</ul></div>'
+        def av(m):
+            if m.get('foto'): return f'<img src="../assets/img/{m["foto"]}" alt="" loading="lazy">'
+            return '<span>' + ''.join(w[0] for w in m['nombre'].split()[:2]) + '</span>'
+        out += '<div class="mesa reveal d3"><b class="lv">Mesa directiva</b><ul class="mesa-grid">' + ''.join(f'<li><div class="mav">{av(m)}</div><span class="nm2">{m["nombre"]}</span><span class="cg">{m.get("cargo","")}</span></li>' for m in d['mesa']) + '</ul></div>'
     if d.get('delegaciones'):
         out += '<div class="mesa reveal d3"><b class="lv">Delegaciones</b><ul class="dl">' + ''.join(f'<li><span class="nm2">{x["pais"]}</span><span class="cg">{x.get("escuela","")}</span></li>' for x in d['delegaciones']) + '</ul></div>'
-    if d.get('tema'):
-        out += f'<p class="lead reveal d3" style="margin-top:14px"><b>Tema 2027:</b> {d["tema"]}</p>'
     return out
 
 def comites_page(prefix='../'):
-    secs = [('intro', 'Comités')] + [(c[0].lower(), c[0]) for c in C['comites']]
+    secs = [('intro', 'Comités')] + [(slug(c[0]), c[0]) for c in C['comites']]
     body = header(prefix, 'comites/') + globe_div(prefix) + scrollcue(secs) + '<main id="main">'
     body += f"""<section class="page-hero tl" id="intro" data-section data-theme="dark" data-globe="hero" data-kf="{kf(x=1.05, y=-.05, s=1.0, lon=-60, dark=True, glow=.35)}"><div class="wrap"><div class="content">
-<p class="eyebrow reveal" style="color:#B9C6EE">MUNMX Esmeralda · Comités</p><h1 class="display reveal d1">Seis<br>comités</h1>
-<p class="lead reveal d2" style="margin-top:22px">Así son los comités de nuestros modelos: desde la Asamblea General, donde se empieza, hasta el Consejo de Seguridad y la OTAN, donde se termina. Cada uno tiene su sede, su nivel y su idioma.</p>
-<p class="reveal d2" style="font-size:14px;color:#B9C6EE;margin-top:14px">Los comités de MUNMX Esmeralda 2027 se anuncian con la convocatoria.</p>
-<div class="com-index reveal d3">{''.join(f'<a href="#{c[0].lower()}" style="--acc:{c[3]}"><b>{c[0]}</b>{c[1]}</a>' for c in C['comites'])}</div></div><div aria-hidden="true"></div></div></section>"""
+<p class="eyebrow reveal" style="color:#B9C6EE">MUNMX Esmeralda · Comités</p><h1 class="display reveal d1">Ocho<br>comités</h1>
+<p class="lead reveal d2" style="margin-top:22px">Ocho comités para MUNMX Esmeralda 2027, en inglés y en español: desde la Asamblea General, donde se empieza, hasta el Consejo de Seguridad y la OTAN. Cada uno con qué es, de qué trata y qué puede decidir.</p>
+<p class="reveal d2" style="font-size:14px;color:#B9C6EE;margin-top:14px">Niveles, tópicos y mesas directivas se publican conforme se confirman.</p>
+<div class="com-index reveal d3">{''.join(f'<a href="#{slug(c[0])}" style="--acc:{c[3]}"><b>{c[0]}</b>{c[1]}</a>' for c in C['comites'])}</div></div><div aria-hidden="true"></div></div></section>"""
     for i, (sig, nm, lv, acc) in enumerate(C['comites']):
         d = COM[sig]; left = i % 2 == 0; light = d.get('light', False)
         theme = 'paper' if light else 'dark'
-        body += f"""<section class="panel {'tl' if left else 'tr'}{' light' if light else ''}" id="{sig.lower()}" data-section data-theme="{theme}" data-bg="{d['bg']}" style="background:{d['bg']};--bgc:{d['bg']};--acc:{acc}" data-globe="hero" data-kf="{kf(x=(1.1 if left else -1.1), y=-.05, s=.95, lon=d['lon'], dark=(not light), glow=.5, bg=d['bg'], dots=d['dots'], focus=d['focus'])}"><div class="wrap"><div class="content shield">
+        body += f"""<section class="panel {'tl' if left else 'tr'}{' light' if light else ''}" id="{slug(sig)}" data-section data-theme="{theme}" data-bg="{d['bg']}" style="background:{d['bg']};--bgc:{d['bg']};--acc:{acc}" data-globe="hero" data-kf="{kf(x=(1.1 if left else -1.1), y=-.05, s=.95, lon=d['lon'], dark=(not light), glow=.5, bg=d['bg'], dots=d['dots'], focus=d['focus'])}"><div class="wrap"><div class="content shield">
 <div class="sig reveal">{sig}</div><div class="nm reveal d1">{nm}</div><div class="lv reveal d1">{lv}</div>
 <p class="sede reveal d2"><i></i>Sede real: {d['sede']}</p>
-<p class="lead reveal d2">{d['txt'][0]}</p><p class="lead reveal d3" style="margin-top:12px">{d['txt'][1]}</p>{mesa_html(d)}
+<p class="lead reveal d2">{d['txt'][0]}</p>{ficha_html(d)}{mesa_html(d)}
 </div>{'<div aria-hidden="true"></div>' if left else ''}</div></section>"""
-    body += f"""<section class="tl" id="unete" data-section data-theme="paper" data-globe="contacto" data-kf="{kf(x=1.6, y=-.1, s=.82, lon=-99, dark=False, glow=0)}"><div class="wrap"><div class="content"><p class="eyebrow reveal">Y después</p><h2 class="display reveal d1" style="font-size:clamp(56px,8vw,130px)">Elige tu comité</h2><p class="lead reveal d2" style="margin-top:18px">Si nunca has participado, empieza por la Asamblea General o UNICEF. Si ya tienes un par de modelos, prueba la OEA o el OIEA. El Consejo de Seguridad y la OTAN son para quien ya sabe lo que es una sesión sin receso.</p><p class="reveal d3" style="margin-top:24px;display:flex;gap:14px;flex-wrap:wrap"><a class="btn" href="{prefix}contacto/">Únete al equipo</a><a class="btn ghost" href="{prefix}munmx/">MUNMX 2027</a></p></div><div aria-hidden="true"></div></div></section></main>"""
-    return head('Comités · ESMUN PrepaTec Esmeralda', 'Los comités de los modelos de ESMUN: Consejo de Seguridad, Asamblea General, OIEA, UNICEF, OEA y OTAN. Sede, nivel e idioma de cada uno.', prefix, 'comites/') + body + footer(prefix) + scripts(prefix)
+    body += f"""<section class="tl" id="unete" data-section data-theme="paper" data-globe="contacto" data-kf="{kf(x=1.6, y=-.1, s=.82, lon=-99, dark=False, glow=0)}"><div class="wrap"><div class="content"><p class="eyebrow reveal">Y después</p><h2 class="display reveal d1" style="font-size:clamp(56px,8vw,130px)">Elige tu comité</h2><p class="lead reveal d2" style="margin-top:18px">Si nunca has participado, empieza por la Asamblea General, UNICEF o el Senado. Si ya tienes un par de modelos, prueba ONU Mujeres, el FMI o la Comisión de Derecho Internacional. El Consejo de Seguridad y la OTAN son para quien ya sabe lo que es una sesión sin receso.</p><p class="reveal d3" style="margin-top:24px;display:flex;gap:14px;flex-wrap:wrap"><a class="btn" href="{prefix}contacto/">Únete al equipo</a><a class="btn ghost" href="{prefix}munmx/">MUNMX 2027</a></p></div><div aria-hidden="true"></div></div></section></main>"""
+    return head('Comités · ESMUN PrepaTec Esmeralda', 'Los ocho comités de MUNMX Esmeralda 2027: Asamblea General, Consejo de Seguridad, UNICEF, ONU Mujeres, Comisión de Derecho Internacional, OTAN, FMI y Cámara de Senadores. Qué es, de qué trata y facultades de cada uno.', prefix, 'comites/') + body + footer(prefix) + scripts(prefix)
 
 def quienes_page(prefix='../'):
     secs = [('intro', 'Quiénes somos'), ('hacemos', 'Qué hacemos'), ('coaches', 'Coaches y asesores'), ('historia', 'Historia'), ('cifras', 'Cifras')]
@@ -156,12 +173,16 @@ def quienes_page(prefix='../'):
     return head('Quiénes somos · ESMUN PrepaTec Esmeralda', 'Qué es ESMUN, qué hacemos, nuestra historia desde 2019 y las cifras del grupo de Modelo de Naciones Unidas de la PrepaTec Esmeralda.', prefix, 'quienes/') + body + footer(prefix) + scripts(prefix)
 
 def munmx_page(prefix='../'):
-    secs = [('intro', 'MUNMX 2027'), ('que', 'Qué es'), ("edicion-2026", "Edición 2026"), ('delegaciones', 'Delegaciones')]
+    secs = [('intro', 'MUNMX 2027'), ('mun', 'Qué es un MUN'), ('que', 'La conferencia'), ("edicion-2026", "Edición 2026"), ('delegaciones', 'Delegaciones')]
     body = header(prefix, 'munmx/') + globe_div(prefix) + scrollcue(secs) + '<main id="main">'
     body += f"""<section id="intro" data-section data-theme="dark" data-globe="munmx" style="text-align:center"><div class="wrap" style="display:grid;justify-items:center;isolation:isolate"><p class="eyebrow reveal" style="color:#B9C6EE">MUNMX Esmeralda 2027</p><h1 class="display reveal d1" style="font-size:clamp(90px,16vw,300px);line-height:.78;color:#fff">11 · 12 · 13<br>de marzo</h1>
 <img class="lockup reveal d2" src="{prefix}assets/logo/MUNMX_2027_lockup_horizontal_blanco.svg" alt="MUNMX Esmeralda 2027" style="width:min(440px,86vw);height:auto;margin:28px auto 22px">
 <p class="lead reveal d2" style="color:#C9D2F0;max-width:52ch">Jueves 11, viernes 12 y sábado 13 de marzo de 2027 en la PrepaTec Esmeralda, Atizapán de Zaragoza. Los comités y la apertura del registro se publican aquí y en {C['ig']}.</p>
 <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:26px" class="reveal d3"><a class="btn" href="{prefix}registro/" style="background:#fff;color:var(--azul);border-color:#fff">Pre-registro de delegaciones</a><a class="btn ghost" href="{C['mymun']}" rel="noopener" target="_blank" style="color:#fff">ESMUN 2024 en mymun</a></div></div></section>
+<section class="tl" id="mun" data-section data-theme="paper" data-globe="noticias"><div class="wrap"><div class="content"><p class="eyebrow reveal">Qué es un Modelo de Naciones Unidas</p><h2 class="display reveal d1" style="font-size:clamp(56px,8vw,130px)">Un país,<br>una silla</h2>
+<p class="lead reveal d2" style="margin-top:18px">Un Modelo de Naciones Unidas es una simulación: cada estudiante representa a un país (o a un senador, en el caso del Senado) dentro de un comité real, con sus reglas y sus temas. Durante dos o tres días investiga, redacta, negocia y vota como lo haría un diplomático.</p>
+<div class="cards"><div class="reveal"><h3>Antes</h3><p>Recibes tu país y tu comité, estudias la guía del tópico y escribes un papel de posición: qué piensa tu país y qué propone.</p></div><div class="reveal d1"><h3>En sesión</h3><p>Discursos, listas de oradores, mociones y caucus. La mesa directiva modera con el protocolo del modelo; todo se decide por votación.</p></div><div class="reveal d2"><h3>Al final</h3><p>Los bloques redactan proyectos de resolución y el comité vota. Se reconoce a las mejores delegaciones y al mejor papel de posición.</p></div></div>
+<p class="reveal d3" style="margin-top:24px"><a class="more" href="{prefix}delegados/">Guía para delegados: protocolo y ejemplos</a></p></div><div aria-hidden="true"></div></div></section>
 <section class="tr" id="que" data-section data-theme="paper" data-globe="quienes"><div class="wrap"><div class="content"><p class="eyebrow reveal">Qué es</p><h2 class="display reveal d1" style="font-size:clamp(56px,8vw,130px)">La conferencia<br>de la prepa</h2><p class="lead reveal d2" style="margin-top:18px">MUNMX es el Modelo de Naciones Unidas de la red PrepaTec. MUNMX Esmeralda es la edición que organiza nuestra prepa: durante dos días, delegaciones de la zona debaten en comités en español e inglés, con mesas directivas y un secretariado formados por alumnos de ESMUN.</p>
 <div class="cards"><div class="reveal"><h3>Comités</h3><p>De nivel principiante a experto, en español o en inglés. La lista de 2027 se anuncia con la convocatoria.</p></div><div class="reveal d1"><h3>Delegaciones</h3><p>Alumnos de la PrepaTec Esmeralda y de otras escuelas, en equipos con su advisor.</p></div><div class="reveal d2"><h3>Registro</h3><p>Primero el <a href="{prefix}registro/">pre-registro</a> de delegaciones; el registro oficial por delegado se publica aquí cuando abre.</p></div></div></div></div></section>
 <section class="tl" id="edicion-2026" data-section data-theme="dark" data-globe="hero" data-kf="{kf(x=1.2, y=-.1, s=1.0, lon=-99, dark=True, glow=.8)}"><div class="wrap"><div class="content"><p class="eyebrow reveal" style="color:#B9C6EE">Edición 2026</p><h2 class="display reveal d1" style="font-size:clamp(56px,8vw,130px)">Once comités<br>y una sala llena</h2><p class="lead reveal d2" style="margin-top:18px">MUNMX Esmeralda 2026 tuvo once comités, del Consejo de Seguridad a Star Wars Rebellion. La edición anterior, ESMUN 2024, convocó a 120 delegados en seis comités; su ficha sigue en mymun.</p>
@@ -210,6 +231,41 @@ def privacidad_page(prefix='../'):
 <p class="ai-note" style="margin-top:28px">Borrador para revisión del advisor y de la prepa antes de publicar.</p></div></div></div></section></main>"""
     return head('Aviso de privacidad · ESMUN', 'Aviso de privacidad del sitio de ESMUN, grupo estudiantil de la PrepaTec Esmeralda.', prefix, 'privacidad/', extra='<meta name="robots" content="noindex">') + body + footer(prefix) + scripts(prefix)
 
+def delegados_page(prefix='../'):
+    secs = [('intro', 'Delegados'), ('descargas', 'Descargas'), ('consejos', 'Consejos')]
+    cards = ''
+    for d in C.get('descargas', []):
+        if d.get('disponible'):
+            links = f'<a class="btn" href="{prefix}assets/{d["archivo"]}" download>Descargar PDF</a>' + (f' <a class="btn ghost" href="{prefix}assets/{d["editable"]}" download>Word</a>' if d.get('editable') else '')
+        else:
+            links = f'<span class="pill">{d.get("nota", "Próximamente")}</span>'
+        cards += f'<div class="dl-card reveal"><h3>{d["titulo"]}</h3><p>{d["desc"]}</p><div class="dl-actions">{links}</div></div>'
+    body = header(prefix, 'delegados/') + globe_div(prefix) + scrollcue(secs) + '<main id="main">'
+    body += f"""<section class="page-hero tl" id="intro" data-section data-theme="dark" data-globe="hero" data-kf="{kf(x=1.1, y=-.05, s=1.0, lon=-74, dark=True, glow=.4, focus='Nueva York · ONU')}"><div class="wrap"><div class="content"><p class="eyebrow reveal" style="color:#B9C6EE">Delegados</p><h1 class="display reveal d1">Antes de<br>la sesión</h1>
+<p class="lead reveal d2" style="margin-top:22px">Lo que necesitas para llegar preparado a MUNMX Esmeralda 2027: el protocolo del modelo, un papel de posición y una resolución de ejemplo con el formato que se pide, y la carta de bienvenida de la mesa.</p>
+<p class="reveal d3" style="margin-top:24px;display:flex;gap:14px;flex-wrap:wrap"><a class="btn" href="#descargas" style="background:#fff;color:var(--azul);border-color:#fff">Ir a las descargas</a><a class="btn ghost" href="{prefix}comites/" style="color:#fff">Ver los comités</a></p></div><div aria-hidden="true"></div></div></section>
+<section class="tr" id="descargas" data-section data-theme="paper" data-globe="quienes"><div class="wrap"><div class="content"><p class="eyebrow reveal">Descargas</p><h2 class="display reveal d1" style="font-size:clamp(56px,8vw,130px)">Documentos</h2><div class="dl-grid">{cards}</div></div></div></section>
+<section class="tl" id="consejos" data-section data-theme="dark" data-globe="hero" data-kf="{kf(x=1.3, y=-.15, s=.95, lon=-99, dark=True, glow=.3)}"><div class="wrap"><div class="content"><p class="eyebrow reveal" style="color:#B9C6EE">Consejos de la mesa</p><h2 class="display reveal d1" style="font-size:clamp(56px,8vw,130px)">Cómo se gana<br>un comité</h2>
+<div class="faq reveal d2" style="--line:rgba(255,255,255,.2);--muted:#C9D2F0;--accent:#FFD98A"><details open><summary>Investiga a tu país, no solo el tema</summary><p>Qué ha votado, con quién se alía, qué le conviene. Un delegado que sabe por qué su país piensa lo que piensa negocia mejor que uno que solo conoce el problema.</p></details><details><summary>Habla pronto y habla corto</summary><p>Los primeros discursos fijan los bloques. Un minuto con una propuesta concreta vale más que tres de contexto.</p></details><details><summary>Escribe desde el primer caucus</summary><p>Las resoluciones que se aprueban son las que ya existían en papel cuando los demás seguían hablando.</p></details><details><summary>Cede en lo accesorio, nunca en la postura</summary><p>Firmar un proyecto ajeno es diplomacia; firmar uno que contradice a tu país es un error que la mesa nota.</p></details><details><summary>Respeta el protocolo y a la mesa</summary><p>Las mociones bien hechas, los puntos de orden justificados y el trato formal cuentan en la evaluación.</p></details></div></div><div aria-hidden="true"></div></div></section></main>"""
+    return head('Delegados · MUNMX Esmeralda 2027', 'Protocolo del modelo, ejemplos de papel de posición y de resolución, y carta de bienvenida para las y los delegados de MUNMX Esmeralda 2027.', prefix, 'delegados/') + body + footer(prefix) + scripts(prefix)
+
+def patrocinios_page(prefix='../'):
+    P = C.get('patrocinios', {})
+    secs = [('intro', 'Patrocinios'), ('niveles', 'Niveles'), ('especie', 'En especie'), ('contacto', 'Contacto')]
+    niveles = ''.join(f'<div class="tier reveal d{i}"><b class="lv">Nivel {i+1}</b><h3>{n["nombre"]}</h3><p>{n["desc"]}</p><ul>{"".join(f"<li>{b}</li>" for b in n["beneficios"])}</ul></div>' for i, n in enumerate(P.get('niveles', [])))
+    especie = ''.join(f'<li>{x}</li>' for x in P.get('en_especie', []))
+    logos = ''.join(f'<li><img src="{prefix}assets/img/{l["logo"]}" alt="{l["nombre"]}"></li>' for l in P.get('logos', []))
+    mail = C['mail']; asunto = P.get('contacto_asunto', 'Patrocinio')
+    body = header(prefix, 'patrocinios/') + globe_div(prefix) + scrollcue(secs) + '<main id="main">'
+    body += f"""<section class="page-hero tl" id="intro" data-section data-theme="dark" data-globe="hero" data-kf="{kf(x=1.1, y=-.05, s=1.0, lon=-99, dark=True, glow=.5)}"><div class="wrap"><div class="content"><p class="eyebrow reveal" style="color:#B9C6EE">Patrocinios · ESMUN y MUNMX Esmeralda 2027</p><h1 class="display reveal d1">Ponga su nombre<br>en la sala</h1>
+<p class="lead reveal d2" style="margin-top:22px">MUNMX Esmeralda reúne durante tres días a delegaciones de preparatorias de la zona en ocho comités. Lo organizan alumnos; lo que cuesta (gafetes, placas, guías, coffee break, reconocimientos) sale de patrocinios. A cambio, su marca aparece donde están las familias, las escuelas y los jóvenes que debaten.</p>
+<p class="reveal d3" style="margin-top:24px;display:flex;gap:14px;flex-wrap:wrap"><a class="btn" href="#niveles" style="background:#fff;color:var(--azul);border-color:#fff">Ver niveles</a><a class="btn ghost" href="mailto:{mail}?subject={asunto}" style="color:#fff">Escribirnos</a></p></div><div aria-hidden="true"></div></div></section>
+<section class="tr" id="niveles" data-section data-theme="paper" data-globe="quienes"><div class="wrap"><div class="content"><p class="eyebrow reveal">Niveles</p><h2 class="display reveal d1" style="font-size:clamp(56px,8vw,130px)">Tres formas<br>de apoyar</h2><div class="tiers">{niveles}</div><p class="reveal d3" style="margin-top:18px;font-size:14px;color:var(--muted)">Los montos se acuerdan con cada patrocinador según el rubro; el advisor de ESMUN emite el reconocimiento correspondiente.</p></div></div></section>
+<section class="tl" id="especie" data-section data-theme="dark" data-globe="hero" data-kf="{kf(x=1.3, y=-.1, s=.95, lon=-99, dark=True, glow=.3)}"><div class="wrap"><div class="content"><p class="eyebrow reveal" style="color:#B9C6EE">En especie</p><h2 class="display reveal d1" style="font-size:clamp(56px,8vw,130px)">Lo que hace falta</h2><ul class="needs reveal d2">{especie}</ul>
+{'<p class="eyebrow reveal d3" style="color:#B9C6EE;margin-top:36px">Patrocinadores 2027</p><ul class="logos reveal d3">' + logos + '</ul>' if logos else '<p class="reveal d3" style="margin-top:28px;font-size:14px;color:#B9C6EE">Los patrocinadores de la edición 2027 se publican aquí conforme se confirman.</p>'}</div><div aria-hidden="true"></div></div></section>
+<section class="tr" id="contacto" data-section data-theme="paper" data-globe="contacto"><div class="wrap"><div class="content"><p class="eyebrow reveal">Contacto</p><h2 class="display reveal d1" style="font-size:clamp(56px,8vw,130px)">Hablemos</h2><p class="lead reveal d2" style="margin-top:18px">Escriba a <a href="mailto:{mail}?subject={asunto}">{mail}</a> con el nombre de su empresa u organización y el rubro que le interesa; le respondemos con una propuesta en menos de una semana.</p><p class="reveal d3" style="margin-top:24px"><a class="btn" href="{prefix}contacto/">Formulario de contacto</a></p></div></div></section></main>"""
+    return head('Patrocinios · ESMUN y MUNMX Esmeralda 2027', 'Cómo patrocinar MUNMX Esmeralda 2027 y a ESMUN: niveles, beneficios y apoyos en especie.', prefix, 'patrocinios/') + body + footer(prefix) + scripts(prefix)
+
 def contacto_page(prefix='../'):
     secs = [('intro', 'Contacto'), ('faq', 'Preguntas')]
     body = header(prefix, 'contacto/') + globe_div(prefix) + scrollcue(secs) + '<main id="main">'
@@ -233,7 +289,7 @@ def home():
     html_ = html_.replace('<p class="eyebrow reveal">Quiénes somos</p>', '<h2 class="sr-only">Quiénes somos</h2><p class="eyebrow reveal">Quiénes somos</p>', 1)
     # enlaces "más" en las secciones resumen
     html_ = html_.replace('</div></div>\n</div></section>\n\n<section id="munmx"', '<p class="reveal d3"><a class="more" href="quienes/">Más sobre nosotros</a> &nbsp;·&nbsp; <a class="more" href="quienes/#coaches">Coaches y asesores</a></p></div></div>\n</div></section>\n\n<section id="munmx"')
-    html_ = html_.replace('<ul class="comites">', '<p class="reveal d3" style="margin-top:30px;font-size:13px;color:#B9C6EE">Comités de referencia · <a href="comites/" style="color:#fff">ver los seis comités</a></p><ul class="comites">')
+    html_ = html_.replace('<ul class="comites">', '<p class="reveal d3" style="margin-top:30px;font-size:13px;color:#B9C6EE">Los ocho comités de 2027 · <a href="comites/" style="color:#fff">qué es y de qué trata cada uno</a></p><ul class="comites">')
     html_ = html_.replace('<a class="btn" href="#contacto">Avísame</a>', '<a class="btn" href="registro/">Pre-registro de delegaciones</a>')
     head_ = head('ESMUN · Modelo de Naciones Unidas PrepaTec Esmeralda', 'Grupo estudiantil de Modelo de Naciones Unidas de la PrepaTec Esmeralda. Formamos delegados desde 2019 y organizamos MUNMX Esmeralda.', '', '',
                  extra='<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Event", "name": "MUNMX Esmeralda 2027", "description": "Modelo de Naciones Unidas de la PrepaTec Esmeralda. Comités en español e inglés para delegaciones de preparatoria.", "startDate": "2027-03-11", "endDate": "2027-03-13", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "eventStatus": "https://schema.org/EventScheduled", "location": {"@type": "Place", "name": "PrepaTec Esmeralda", "address": {"@type": "PostalAddress", "addressLocality": "Atizapán de Zaragoza", "addressRegion": "Estado de México", "addressCountry": "MX"}}, "organizer": {"@type": "Organization", "name": "ESMUN", "url": "https://esmun.github.io/"}, "url": "https://esmun.github.io/munmx/"}</script><link rel="manifest" href="site.webmanifest"><link rel="preload" href="assets/fonts/league-gothic-400.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="assets/fonts/montserrat-400.woff2" as="font" type="font/woff2" crossorigin>')
@@ -242,7 +298,7 @@ def home():
 def build():
     (OUT / 'style.css').write_text(P6.CSS + PAGES_CSS, encoding='utf-8')
     (OUT / 'index.html').write_text(home(), encoding='utf-8')
-    for folder, fn in [('quienes', quienes_page), ('comites', comites_page), ('munmx', munmx_page), ('contacto', contacto_page), ('registro', registro_page), ('privacidad', privacidad_page)]:
+    for folder, fn in [('quienes', quienes_page), ('comites', comites_page), ('munmx', munmx_page), ('contacto', contacto_page), ('registro', registro_page), ('privacidad', privacidad_page), ('delegados', delegados_page), ('patrocinios', patrocinios_page)]:
         d = OUT / folder; d.mkdir(exist_ok=True); (d / 'index.html').write_text(fn('../'), encoding='utf-8')
     # pie y cabecera del blog con la navegación nueva
     for f in (OUT / 'noticias').glob('*.html'):
@@ -252,7 +308,7 @@ def build():
         t = t.replace('href="../#quienes"', 'href="../quienes/"').replace('href="../#munmx"', 'href="../munmx/"')
         f.write_text(t, encoding='utf-8')
     # sitemap con las subpáginas
-    pages = ['/', '/quienes/', '/comites/', '/munmx/', '/noticias/'] + ['/noticias/' + n[5] + '.html' for n in C['noticias']] + ['/contacto/', '/registro/']
+    pages = ['/', '/quienes/', '/comites/', '/munmx/', '/noticias/'] + ['/noticias/' + n[5] + '.html' for n in C['noticias']] + ['/contacto/', '/registro/', '/delegados/', '/patrocinios/']
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{DOMAIN}{p}</loc><changefreq>{"weekly" if p in ("/", "/noticias/") else "monthly"}</changefreq></url>\n' for p in pages) + '</urlset>\n'
     (OUT / 'sitemap.xml').write_text(sm, encoding='utf-8')
     host = re.sub(r'^https?://', '', DOMAIN).strip('/')

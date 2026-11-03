@@ -12,7 +12,10 @@ Todo el contenido vive en `src/content/`. No hace falta tocar Python ni HTML.
 | Fichas de comités (sede, colores, descripción) | `src/content/comites.json` |
 | Coaches y asesores | `src/content/staff.json` |
 | Noticias (una por archivo; cabecera entre `---` y cuerpo en Markdown) | `src/content/noticias/*.md` |
-| Fotos | `src/assets/img/real/` |
+| Fotos | `src/assets/img/real/` (fotos de mesa en `real/mesa/`) |
+| Descargas para delegados (protocolo, ejemplos, carta) | `src/content/site.json` → `descargas`; archivos en `src/assets/docs/` |
+| Patrocinios: niveles, beneficios, necesidades en especie, logotipos | `src/content/site.json` → `patrocinios` |
+| Mesa directiva y tópico de cada comité | `src/content/comites.json` → `mesa`, `tema` |
 
 Al hacer push a `main`, GitHub Actions construye el sitio y lo publica (ver `.github/workflows/pages.yml`). También se puede construir en local:
 
@@ -39,3 +42,6 @@ Copiar cualquier archivo de `src/content/noticias/`, renombrarlo (el nombre es l
 - `src/content.py`: carga de `content/`.
 - `src/logo_svg.py` + `logo_cache.json`: logotipo inline (precalculado; la fuente está en `99 Archivos fuente/v3`).
 - `src/assets/`: CSS, JS (globo 3D, comportamiento), fuentes, logotipos, fotos.
+
+## Documentos con membrete
+`python3 tools/make_docs.py` regenera el membrete de la carta (DOCX y PDF) y los ejemplos de papel de posición y resolución en `src/assets/docs/`. Para publicar la carta real: pegar el texto en `Membrete_MUNMX_2027_carta.docx`, exportar a PDF como `Carta_bienvenida_MUNMX_2027.pdf` en `src/assets/docs/` y poner `"disponible": true` en `descargas`. El protocolo se publica igual: `Protocolo_MUNMX_2027.pdf` + `disponible: true`.
