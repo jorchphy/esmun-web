@@ -5,7 +5,23 @@
     "nivel": "Por confirmar",
     "idioma": "Inglés",
     "tema": "Israel / Palestina",
-    "mesa": [],
+    "mesa": [
+      {
+        "nombre": "Frida Camila Lucio Jiménez",
+        "cargo": "Presidenta",
+        "foto": ""
+      },
+      {
+        "nombre": "Michelle Levy Orozco",
+        "cargo": "Moderadora",
+        "foto": ""
+      },
+      {
+        "nombre": "Aryam Zamora",
+        "cargo": "Oficial de conferencia",
+        "foto": ""
+      }
+    ],
     "que": "La Asamblea General es el órgano deliberativo principal de la ONU: los 193 Estados miembros, cada uno con un voto. Se reúne cada año en Nueva York desde septiembre.",
     "trata": "De casi todo: paz y seguridad cuando el Consejo está bloqueado, desarrollo, derechos humanos, presupuesto de la organización y elección de los miembros no permanentes del Consejo de Seguridad.",
     "facultades": "Aprueba resoluciones por mayoría simple (dos tercios en asuntos importantes). Sus resoluciones son recomendaciones, no obligaciones, salvo las presupuestarias. Puede convocar sesiones especiales de emergencia. En el modelo sigue el procedimiento parlamentario clásico y es el comité por el que casi todos empiezan.",
@@ -21,7 +37,23 @@
     "nivel": "Por confirmar",
     "idioma": "Inglés",
     "tema": "Por confirmar",
-    "mesa": [],
+    "mesa": [
+      {
+        "nombre": "Mateo Ramírez Valdez",
+        "cargo": "Presidente",
+        "foto": ""
+      },
+      {
+        "nombre": "Alessa Estefania Ordoñez Polo",
+        "cargo": "Moderadora",
+        "foto": ""
+      },
+      {
+        "nombre": "Daniel González Peña",
+        "cargo": "Oficial de conferencia",
+        "foto": ""
+      }
+    ],
     "que": "El Consejo de Seguridad es el órgano responsable de mantener la paz y la seguridad internacionales. Quince Estados: cinco permanentes con derecho de veto (China, Estados Unidos, Francia, Reino Unido y Rusia) y diez electos por dos años.",
     "trata": "Conflictos armados, amenazas a la paz, sanciones, operaciones de mantenimiento de la paz y admisión de nuevos miembros a la ONU.",
     "facultades": "Es el único órgano cuyas resoluciones obligan a todos los miembros de la ONU (artículo 25 de la Carta). Puede imponer sanciones, autorizar el uso de la fuerza y crear misiones de paz. Necesita nueve votos a favor sin veto de un permanente. En el modelo es el comité de mayor nivel: pocas delegaciones y crisis que cambian a mitad de sesión.",
@@ -37,7 +69,23 @@
     "nivel": "Por confirmar",
     "idioma": "Inglés",
     "tema": "Por confirmar",
-    "mesa": [],
+    "mesa": [
+      {
+        "nombre": "Alina Rouco",
+        "cargo": "Presidenta",
+        "foto": ""
+      },
+      {
+        "nombre": "Xabier Lizarraga Ávila",
+        "cargo": "Moderador",
+        "foto": ""
+      },
+      {
+        "nombre": "Natalia García Mireles",
+        "cargo": "Oficial de conferencia",
+        "foto": ""
+      }
+    ],
     "que": "El Fondo de las Naciones Unidas para la Infancia, creado en 1946, trabaja por los derechos de niñas, niños y adolescentes en más de 190 países y territorios.",
     "trata": "Salud, nutrición, agua y saneamiento, educación, protección contra la violencia y la explotación, y respuesta a emergencias humanitarias.",
     "facultades": "Lo dirige una Junta Ejecutiva de 36 Estados que aprueba programas y presupuesto; se financia con aportaciones voluntarias. No legisla: diseña programas de cooperación con los gobiernos. En el modelo se debate qué se puede financiar y ejecutar, más que quién tiene razón.",
@@ -53,7 +101,23 @@
     "nivel": "Por confirmar",
     "idioma": "Inglés",
     "tema": "Por confirmar",
-    "mesa": [],
+    "mesa": [
+      {
+        "nombre": "Sara Ocaña",
+        "cargo": "Presidenta",
+        "foto": ""
+      },
+      {
+        "nombre": "Dulce Diana Piedra",
+        "cargo": "Moderadora",
+        "foto": ""
+      },
+      {
+        "nombre": "Camila",
+        "cargo": "Oficial de conferencia",
+        "foto": ""
+      }
+    ],
     "que": "ONU Mujeres es la entidad de las Naciones Unidas para la igualdad de género y el empoderamiento de las mujeres. Nació en 2010 al fusionar cuatro oficinas anteriores de la organización.",
     "trata": "Participación política de las mujeres, autonomía económica, fin de la violencia de género, paz y seguridad con perspectiva de género, y seguimiento de los compromisos de Beijing.",
     "facultades": "Apoya a los Estados en la aplicación de normas internacionales, coordina el trabajo de todo el sistema de la ONU en igualdad de género y presta asistencia técnica y financiera. Sus resoluciones son recomendaciones. En el modelo, el reto es pasar del diagnóstico a medidas concretas y financiables.",
@@ -69,7 +133,23 @@
     "nivel": "Por confirmar",
     "idioma": "Inglés",
     "tema": "Por confirmar",
-    "mesa": [],
+    "mesa": [
+      {
+        "nombre": "Juan Pablo Del Río",
+        "cargo": "Presidente",
+        "foto": ""
+      },
+      {
+        "nombre": "Gael Escobar Villareal",
+        "cargo": "Moderador",
+        "foto": ""
+      },
+      {
+        "nombre": "Constanza Rodríguez Aguilar",
+        "cargo": "Oficial de conferencia",
+        "foto": ""
+      }
+    ],
     "que": "La Comisión de Derecho Internacional es el órgano de expertos que la Asamblea General creó en 1947 para codificar y desarrollar el derecho internacional. La forman 34 juristas electos por cinco años, que actúan a título personal, no como representantes de gobiernos.",
     "trata": "Tratados, responsabilidad de los Estados, inmunidades, crímenes internacionales, protección de la atmósfera y del medio ambiente en conflictos armados: temas que después se convierten en convenciones.",
     "facultades": "Elabora proyectos de artículos y comentarios que la Asamblea General puede convertir en tratados, como la Convención de Viena sobre el Derecho de los Tratados o el borrador del Estatuto de Roma. No vota resoluciones: redacta derecho. En el modelo, cada delegado es un jurista y el producto es un articulado, no una resolución.",
@@ -85,7 +165,23 @@
     "nivel": "Por confirmar",
     "idioma": "Español",
     "tema": "Por confirmar",
-    "mesa": [],
+    "mesa": [
+      {
+        "nombre": "Erick Ricardo Rubio Sumano",
+        "cargo": "Presidente",
+        "foto": ""
+      },
+      {
+        "nombre": "Francisco Mateo Herrera Anaya",
+        "cargo": "Moderador",
+        "foto": ""
+      },
+      {
+        "nombre": "Jaime",
+        "cargo": "Oficial de conferencia",
+        "foto": ""
+      }
+    ],
     "que": "La Organización del Tratado del Atlántico Norte es la alianza político-militar de 32 países de Europa y Norteamérica, fundada en 1949.",
     "trata": "Defensa colectiva, disuasión, ciberseguridad, operaciones de gestión de crisis y relación con países socios.",
     "facultades": "Su artículo 5 establece que un ataque contra un aliado es un ataque contra todos. El Consejo del Atlántico Norte decide por consenso: nadie vota, todos tienen que estar de acuerdo. En el modelo, el trabajo es construir ese consenso sin perder la postura propia.",
@@ -101,7 +197,23 @@
     "nivel": "Por confirmar",
     "idioma": "Español",
     "tema": "Por confirmar",
-    "mesa": [],
+    "mesa": [
+      {
+        "nombre": "Froylan Alfonso Palacios Castañeda",
+        "cargo": "Presidente",
+        "foto": ""
+      },
+      {
+        "nombre": "Mateo Herrera",
+        "cargo": "Moderador",
+        "foto": ""
+      },
+      {
+        "nombre": "Matías Cifuentes",
+        "cargo": "Oficial de conferencia",
+        "foto": ""
+      }
+    ],
     "que": "El Fondo Monetario Internacional, creado en Bretton Woods en 1944, vela por la estabilidad del sistema monetario internacional. Lo integran 191 países.",
     "trata": "Crisis de balanza de pagos, deuda soberana, tipos de cambio, inflación y reformas económicas de los países que piden asistencia.",
     "facultades": "Supervisa las economías de sus miembros, presta a países en crisis con condiciones de política económica y da asistencia técnica. El poder de voto depende de la cuota de cada país, así que no todos pesan igual. En el modelo se negocian programas de rescate y sus condiciones: economía y política a la vez.",
@@ -117,7 +229,23 @@
     "nivel": "Por confirmar",
     "idioma": "Español",
     "tema": "Por confirmar",
-    "mesa": [],
+    "mesa": [
+      {
+        "nombre": "Arantza Rodríguez Aguilar",
+        "cargo": "Presidenta",
+        "foto": ""
+      },
+      {
+        "nombre": "Gerardo",
+        "cargo": "Moderador",
+        "foto": ""
+      },
+      {
+        "nombre": "Juan Pablo Ramírez Villa",
+        "cargo": "Oficial de conferencia",
+        "foto": ""
+      }
+    ],
     "que": "La Cámara de Senadores es una de las dos cámaras del Congreso de la Unión. La forman 128 senadoras y senadores electos por seis años.",
     "trata": "Además de legislar, el Senado analiza la política exterior, ratifica los tratados internacionales y aprueba nombramientos de embajadores, ministros de la Suprema Corte y otros cargos.",
     "facultades": "Aprueba o rechaza iniciativas de ley, dictámenes y reformas constitucionales (con la Cámara de Diputados y las legislaturas estatales), ratifica tratados y puede constituirse en jurado de sentencia en juicio político. En el modelo, el procedimiento es el parlamentario mexicano: iniciativas, comisiones, dictámenes y votación en el pleno, en español.",
